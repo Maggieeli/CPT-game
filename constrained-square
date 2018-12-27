@@ -1,0 +1,28 @@
+global x
+global y
+x = 60
+y = 60
+
+
+def setup():
+    size(640,480)
+    background(0)
+    
+def draw():
+    background(0)
+    fill(255)
+    rect(40, 40, 550, 400)
+    rect(x,y,60,60)
+
+def keyPressed():
+    global x
+    global y
+    if (key == CODED):
+        if (keyCode == UP and y > 40):
+            y -= 10
+        elif (keyCode == DOWN and y < 380):
+            y += 10
+        elif (keyCode == LEFT and x > 40):
+            x -= 10
+        elif (keyCode == RIGHT and x < 530):
+            x += 10
