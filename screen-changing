@@ -23,18 +23,39 @@ def draw():
     
     if screen == 1:
         background(0)
-        fill(255)
         rect(40, 40, 550, 400)
+        fill(255)
         rect(x,y,60,60)
         if keyPressed:
             global x
             global y
             if (key == CODED):
                 if (keyCode == UP and y > 40):
-                    y -= 5
+                    y -= 3
                 elif (keyCode == DOWN and y < 380):
-                    y += 5
+                    y += 3
                 elif (keyCode == LEFT and x > 40):
-                    x -= 5
+                    x -= 3
                 elif (keyCode == RIGHT and x < 530):
-                    x += 5
+                    x += 3
+        if (keyPressed):
+            if (key == 'c'):
+                screen += 1
+    if screen == 2:
+        background(139,0,139)
+        rect(40, 40, 550, 400)
+        rect(x, y, 60, 60)
+        if keyPressed:
+            global x
+            global y
+            if (key == CODED):
+                if (keyCode == UP and y > 40):
+                    y -= 3
+                elif (keyCode == DOWN and y < 380):
+                    y += 3
+                elif (keyCode == LEFT and x > 40):
+                    x -= 3
+                elif (keyCode == RIGHT and x < 530):
+                    x += 3
+        
+           
