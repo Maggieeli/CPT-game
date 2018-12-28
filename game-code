@@ -14,11 +14,10 @@ def draw():
     
     if screen == 0:
         background(0)
-        textSize(20)
-        text("Hello the screen is finally working", 200, 240)
+        rect(320, 240, 20, 10)
         fill(255)
-        if (keyPressed):
-            if (key == 'b'):
+        if (mouseClicked):
+            if ( mouseX > 300 and mouseX < 340 and mouseY > 250 and mouseY < 250):
                 screen += 1
     
     if screen == 1:
