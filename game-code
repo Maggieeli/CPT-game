@@ -6,7 +6,7 @@ y = 60
 screen = 0
 
 def setup():
-    size(640,480)
+    size(1200, 800)
     background(0)
     
 def draw():
@@ -15,7 +15,7 @@ def draw():
     if screen == 0:
         background(0)
         textSize(20)
-        text("Hello the screen is finally working", 200, 240)
+        text("Hello the screen is finally working", 450, 400)
         fill(255)
         if (keyPressed):
             if (key == 'b'):
@@ -23,39 +23,38 @@ def draw():
     
     if screen == 1:
         background(0)
-        rect(40, 40, 550, 400)
+        rect(50, 50, 1100, 700)
         fill(255)
-        rect(x,y,60,60)
+        rect(x, y, 60, 60)
         if keyPressed:
             global x
             global y
             if (key == CODED):
-                if (keyCode == UP and y > 40):
+                if (keyCode == UP and y > 50):
                     y -= 3
-                elif (keyCode == DOWN and y < 380):
+                elif (keyCode == DOWN and y < 690):
                     y += 3
-                elif (keyCode == LEFT and x > 40):
+                elif (keyCode == LEFT and x > 50):
                     x -= 3
-                elif (keyCode == RIGHT and x < 530):
+                elif (keyCode == RIGHT and x < 1090):
                     x += 3
         if (keyPressed):
             if (key == 'c'):
                 screen += 1
     if screen == 2:
         background(139,0,139)
-        rect(40, 40, 550, 400)
+        rect(50, 50, 1100, 700)
         rect(x, y, 60, 60)
         if keyPressed:
             global x
             global y
             if (key == CODED):
-                if (keyCode == UP and y > 40):
+                if (keyCode == UP and y > 50):
                     y -= 3
-                elif (keyCode == DOWN and y < 380):
+                elif (keyCode == DOWN and y < 690):
                     y += 3
-                elif (keyCode == LEFT and x > 40):
+                elif (keyCode == LEFT and x > 50):
                     x -= 3
-                elif (keyCode == RIGHT and x < 530):
+                elif (keyCode == RIGHT and x < 1090):
                     x += 3
-        
            
