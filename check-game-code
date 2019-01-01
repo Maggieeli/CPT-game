@@ -47,10 +47,10 @@ def draw():
         
     if screen == 3:
         background(0)
-        text("Use arrow keys to move your character and blah blah blah", 450, 400)
+        text("Use arrow keys to move your character, use C to change screen and V to change it back", 100, 400)
         
         text("BACK", 250, 600)
-        if (mouseX >= 250 and mouseX <= 280 and mouseY >= 570 and mouseY <= 600 and 
+        if (mouseX >= 250 and mouseX <= 300 and mouseY >= 570 and mouseY <= 600 and 
             mousePressed):
             screen = 0
         
