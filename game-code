@@ -17,9 +17,10 @@ def draw():
         textSize(20)
         text("Hello the screen is finally working", 450, 400)
         fill(255)
-        if (keyPressed):
-            if (key == 'b'):
-                screen += 1
+        text("Play", 300, 250)
+        if (mouseX >= 300 and mouseX <= 330 and mouseY >= 220 and
+           mouseY <= 250 and mousePressed):
+            screen = 1
     
     if screen == 1:
         background(0)
