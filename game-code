@@ -19,43 +19,51 @@ def draw():
         fill(255)
         text("Play", 300, 250)
         if (mouseX >= 300 and mouseX <= 330 and mouseY >= 220 and
-           mouseY <= 250 and mousePressed):
+            mouseY <= 250 and mousePressed):
             screen = 1
-    
+        text("How To Play", 400, 250)
+        if (mouseX >= 400 and mouseX<= 510 and mouseY >= 220 and mouseY <=250 
+            and mousePressed):
+            screen = 3
+
     if screen == 1:
         background(0)
         rect(50, 50, 1100, 700)
         fill(255)
         rect(x, y, 60, 60)
-        if keyPressed:
-            global x
-            global y
-            if (key == CODED):
-                if (keyCode == UP and y > 50):
-                    y -= 3
-                elif (keyCode == DOWN and y < 690):
-                    y += 3
-                elif (keyCode == LEFT and x > 50):
-                    x -= 3
-                elif (keyCode == RIGHT and x < 1090):
-                    x += 3
+        keyMovement()
         if (keyPressed):
             if (key == 'c'):
-                screen += 1
+                screen = 2
+                
     if screen == 2:
         background(139,0,139)
         rect(50, 50, 1100, 700)
         rect(x, y, 60, 60)
-        if keyPressed:
-            global x
-            global y
-            if (key == CODED):
-                if (keyCode == UP and y > 50):
-                    y -= 3
-                elif (keyCode == DOWN and y < 690):
-                    y += 3
-                elif (keyCode == LEFT and x > 50):
-                    x -= 3
-                elif (keyCode == RIGHT and x < 1090):
-                    x += 3
-           
+        keyMovement()
+        if (keyPressed):
+            if (key == 'v'):
+                screen = 1
+        
+    if screen == 3:
+        background(0)
+        text("Use arrow keys to move your character, use C to change screen and V to change it back", 100, 400)
+        
+        text("BACK", 250, 600)
+        if (mouseX >= 250 and mouseX <= 300 and mouseY >= 570 and mouseY <= 600 and 
+            mousePressed):
+            screen = 0
+        
+def keyMovement():
+    if keyPressed:
+        global x
+        global y
+        if (key == CODED):
+            if (keyCode == UP and y > 50):
+                y -= 3
+            elif (keyCode == DOWN and y < 690):
+                y += 3
+            elif (keyCode == LEFT and x > 50):
+                x -= 3
+            elif (keyCode == RIGHT and x < 1090):
+                x += 3
