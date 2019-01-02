@@ -14,8 +14,6 @@ def draw():
     
     if screen == 0:
         background(0)
-        textSize(20)
-        text("Hello the screen is finally working", 450, 400)
         fill(255)
         text("Play", 300, 250)
         if (mouseX >= 300 and mouseX <= 330 and mouseY >= 220 and
