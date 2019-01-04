@@ -8,21 +8,31 @@ screen = 0
 def setup():
     size(1200, 800)
     background(0)
+    global img_floor
+    img_floor = loadImage("PixelArt.png")
     
 def draw():
     global screen
-    
+    global img_floor
     if screen == 0:
         background(0)
         fill(255)
-        text("Play", 300, 250)
-        if (mouseX >= 300 and mouseX <= 330 and mouseY >= 220 and
-           mouseY <= 250 and mousePressed):
+        text("Play", 600, 400)
+        textSize(50)
+        if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
+           mouseY <= 600 and mousePressed):
             screen = 1
     
     if screen == 1:
         background(0)
         rect(50, 50, 1100, 700)
+        image(img_floor, 50, 50)
+        image(img_floor, 50, 145)
+        image(img_floor, 50, 240)
+        image(img_floor, 50, 335)
+        image(img_floor, 50, 430)
+        image(img_floor, 50, 525)
+        image(img_floor, 50, 620)
         fill(255)
         rect(x, y, 60, 60)
         if keyPressed:
@@ -57,3 +67,4 @@ def draw():
                 elif (keyCode == RIGHT and x < 1090):
                     x += 3
            
+
