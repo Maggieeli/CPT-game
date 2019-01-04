@@ -17,58 +17,95 @@ def draw():
     if screen == 0:
         background(0)
         fill(255)
-        text("Play", 600, 400)
-        textSize(50)
-        if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
-           mouseY <= 600 and mousePressed):
-            screen = 1
+        def play_button():
+            global screen
+            text("Play", 600, 400)
+            textSize(50)
+            if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
+            mouseY <= 600 and mousePressed):
+                screen = 1
+        play_button()
     
     if screen == 1:
         background(0)
-        rect(50, 50, 1100, 700)
-        image(img_floor, 50, 50)
-        image(img_floor, 50, 145)
-        image(img_floor, 50, 240)
-        image(img_floor, 50, 335)
-        image(img_floor, 50, 430)
-        image(img_floor, 50, 525)
-        image(img_floor, 50, 620)
-        fill(255)
-        rect(x, y, 60, 60)
-        if keyPressed:
+        def graphics():
+            rect(50, 50, 1100, 700)
+            image(img_floor, 50, 50)
+            image(img_floor, 50, 145)
+            image(img_floor, 50, 240)
+            image(img_floor, 50, 335)
+            image(img_floor, 50, 430)
+            image(img_floor, 50, 525)
+            image(img_floor, 50, 620)
+            fill(255)
+            rect(x, y, 60, 60)
+        def character_movement():
+            if keyPressed:
+                global x
+                global y
+                global screen
+                if (key == CODED):
+                    if (keyCode == UP and y > 50):
+                        y -= 3
+                    elif (keyCode == DOWN and y < 690):
+                        y += 3
+                    elif (keyCode == LEFT and x > 50):
+                        x -= 3
+                    elif (keyCode == RIGHT and x < 1090):
+                        x += 3
+        def screen_change():
             global x
             global y
-            if (key == CODED):
-                if (keyCode == UP and y > 50):
-                    y -= 3
-                elif (keyCode == DOWN and y < 690):
-                    y += 3
-                elif (keyCode == LEFT and x > 50):
-                    x -= 3
-                elif (keyCode == RIGHT and x < 1090):
-                    x += 3
-        if (keyPressed):
-            if (key == 'c'):
-                screen += 1
+            global screen
+            if (x >= 1000 and x <= 1100 and y >= 350 and
+            y <= 450) and (keyPressed):
+                if (key == "i"):
+                    screen += 1
+            if (keyPressed):
+                if (key == 'x'):
+                    screen = 3
+            if (keyPressed):
+                if (key == 'j'):
+                    screen += 1
+        def display_location():
+            global x
+            text(str(x), 10, 20, 1050, 50)
+        character_movement()
+        graphics()
+        screen_change()
+        display_location()
+
     if screen == 2:
         background(139,0,139)
         rect(50, 50, 1100, 700)
         rect(x, y, 60, 60)
-        if keyPressed:
-            global x
-            global y
-            if (key == CODED):
-                if (keyCode == UP and y > 50):
-                    y -= 3
-                elif (keyCode == DOWN and y < 690):
-                    y += 3
-                elif (keyCode == LEFT and x > 50):
-                    x -= 3
-                elif (keyCode == RIGHT and x < 1090):
-                    x += 3
+        def character_movement():
+            if keyPressed:
+                global x
+                global y
+                if (key == CODED):
+                    if (keyCode == UP and y > 50):
+                        y -= 3
+                    elif (keyCode == DOWN and y < 690):
+                        y += 3
+                    elif (keyCode == LEFT and x > 50):
+                        x -= 3
+                    elif (keyCode == RIGHT and x < 1090):
+                        x += 3
+        def screen_change():
+            global screen
+            if (keyPressed):
+                if (key == 'x'):
+                    screen = 3
+        character_movement()
+        screen_change()
     if screen == 3:
         background(0)
         if keyPressed:
-            if (key == 'x'):
+            if (key == 'q'):
                 screen = 1
+        if keyPressed:
+            if (key == 'w'):
+                screen = 2
            
+
