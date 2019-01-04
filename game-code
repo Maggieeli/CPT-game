@@ -66,5 +66,9 @@ def draw():
                     x -= 3
                 elif (keyCode == RIGHT and x < 1090):
                     x += 3
+    if screen == 3:
+        background(0)
+        if keyPressed:
+            if (key == 'x'):
+                screen = 1
            
-
