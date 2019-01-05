@@ -40,7 +40,7 @@ def draw():
             image(img_floor, 50, 430)
             image(img_floor, 50, 525)
             image(img_floor, 50, 620)
-            image(img_door, 510, 40)
+            image(img_door, 520, 40)
             img_door.resize(160, 50)
             fill(255)
             rect(x, y, 60, 60)
@@ -65,7 +65,7 @@ def draw():
             if (x >= 510 and x <= 610 and y >= 50 and
             y <= 150):
                 textSize(15)
-                text("press i to go outside", 560, 150)
+                text("press i to go outside", 520, 150)
                 if keyPressed:
                     if (key == "i"):
                         screen += 1
@@ -89,7 +89,7 @@ def draw():
 
 
     if screen == 2:
-        background(139,0,139)
+        background(139)
         rect(50, 50, 1100, 700)
         rect(x, y, 60, 60)
         def character_movement():
@@ -106,7 +106,16 @@ def draw():
                     elif (keyCode == RIGHT and x < 1090):
                         x += 3
         def screen_change():
+            global x
+            global y
             global screen
+            if (x >= 510 and x <= 610 and y >= 600 and
+            y <= 700):
+                textSize(15)
+                text("press i to go outside", 560, 600)
+                if keyPressed:
+                    if (key == "i"):
+                        screen -=1
             if (keyPressed):
                 if (key == 'x'):
                     screen = 3
@@ -120,4 +129,3 @@ def draw():
         if keyPressed:
             if (key == 'w'):
                 screen = 2
-           
