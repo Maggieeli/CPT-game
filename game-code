@@ -20,13 +20,6 @@ def draw():
     if screen == 0:
         background(0)
         fill(255)
-        def play_button():
-            global screen
-            text("Play", 600, 400)
-            textSize(50)
-            if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
-            mouseY <= 600 and mousePressed):
-                screen = 1
         play_button()
     
     if screen == 1:
@@ -44,20 +37,6 @@ def draw():
             img_door.resize(160, 50)
             fill(255)
             rect(x, y, 60, 60)
-        def character_movement():
-            if keyPressed:
-                global x
-                global y
-                global screen
-                if (key == CODED):
-                    if (keyCode == UP and y > 50):
-                        y -= 3
-                    elif (keyCode == DOWN and y < 690):
-                        y += 3
-                    elif (keyCode == LEFT and x > 50):
-                        x -= 3
-                    elif (keyCode == RIGHT and x < 1090):
-                        x += 3
         def screen_change():
             global x
             global y
@@ -92,19 +71,6 @@ def draw():
         background(139,0,139)
         rect(50, 50, 1100, 700)
         rect(x, y, 60, 60)
-        def character_movement():
-            if keyPressed:
-                global x
-                global y
-                if (key == CODED):
-                    if (keyCode == UP and y > 50):
-                        y -= 3
-                    elif (keyCode == DOWN and y < 690):
-                        y += 3
-                    elif (keyCode == LEFT and x > 50):
-                        x -= 3
-                    elif (keyCode == RIGHT and x < 1090):
-                        x += 3
         def screen_change():
             global screen
             if (keyPressed):
@@ -120,4 +86,27 @@ def draw():
         if keyPressed:
             if (key == 'w'):
                 screen = 2
-           
+              
+def character_movement():
+    if keyPressed:
+        global x
+        global y
+        if (key == CODED):
+            if (keyCode == UP and y > 50):
+                y -= 3
+            elif (keyCode == DOWN and y < 690):
+                y += 3
+            elif (keyCode == LEFT and x > 50):
+                x -= 3
+            elif (keyCode == RIGHT and x < 1090):
+                x += 3
+                
+def play_button():
+    global screen
+    text("Play", 600, 400)
+    textSize(50)
+    if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
+    mouseY <= 600 and mousePressed):
+        screen = 1
+        
+
