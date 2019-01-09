@@ -11,14 +11,17 @@ def setup():
     global img_floor
     global img_door
     global img_croppedfloor
+    global img_grass
     img_floor = loadImage("FloorPixel.png")
     img_door = loadImage("door.png")
     img_croppedfloor = loadImage("FloorPixelCropped.png")
+    img_grass = loadImage("grass.png")
     
 def draw():
     global screen
     global img_floor
     global img_door
+    global img_grass
     if screen == 0:
         background(0, 0, 205)
         fill(255)
@@ -76,9 +79,12 @@ def draw():
         display_location()
 
     if screen == 2:
-        background(139,0,139)
-        rect(50, 50, 1100, 700)
-        rect(x, y, 60, 60)
+        background(135,206,250)
+        def graphics():
+            rect(50, 50, 1100, 700)
+            image(img_grass, 50, 50)
+            fill(255)
+            rect(x, y, 60, 60)
         def screen_change():
             global screen
             if (keyPressed):
@@ -86,6 +92,7 @@ def draw():
                     screen = 3
         character_movement()
         screen_change()
+        graphics()
         
     if screen == 3:
         background(0)
