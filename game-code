@@ -20,9 +20,9 @@ def draw():
     global img_floor
     global img_door
     if screen == 0:
-        background(0)
+        background(0, 0, 205)
         fill(255)
-        play_button()
+        main_menu()
     
     if screen == 1:
         background(0)
@@ -50,13 +50,13 @@ def draw():
             global x
             global y
             global screen
-            if (x >= 510 and x <= 610 and y >= 50 and
-            y <= 150):
+            if (x >= 510 and x <= 610 and y >= 48 and
+            y <= 90):
                 textSize(15)
                 text("press i to go outside", 560, 150)
                 if keyPressed:
                     if (key == "i"):
-                        screen += 1
+                        screen = 2
             if (keyPressed):
                 if (key == 'x'):
                     screen = 3
@@ -86,14 +86,27 @@ def draw():
                     screen = 3
         character_movement()
         screen_change()
+        
     if screen == 3:
         background(0)
+        fill(255)
+        text("riddle", 50, 50)
         if keyPressed:
-            if (key == 'q'):
+            if (key =='q'):
                 screen = 1
         if keyPressed:
             if (key == 'w'):
                 screen = 2
+                
+    if screen == 4:
+        background(0, 0, 205)
+        textSize(50)
+        text("Press X to riddle press Q for inside press W for outside", 50, 50)
+        textSize(30)
+        text("Back", 1000, 600)
+        if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
+            and mousePressed):
+            screen = 0
               
 def character_movement():
     if keyPressed:
@@ -109,12 +122,16 @@ def character_movement():
             elif (keyCode == RIGHT and x < 1090):
                 x += 3
                 
-def play_button():
+def main_menu():
     global screen
-    text("Play", 600, 400)
+    textSize(70)
+    text("Welcome To Yikes", 320, 300)
     textSize(50)
-    if (mouseX >= 450 and mouseX <= 750 and mouseY >= 200 and
-    mouseY <= 600 and mousePressed):
+    text("Play", 550, 500)
+    text("How to Play", 500, 600)
+    if (mouseX >= 550 and mouseX <= 650 and mouseY >= 475 and
+    mouseY <= 515 and mousePressed):
         screen = 1
-        
-
+    if (mouseX >= 500 and mouseX <= 775 and mouseY >= 575 and mouseY <=615
+        and mousePressed):
+        screen = 4
