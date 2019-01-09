@@ -50,8 +50,8 @@ def draw():
             global x
             global y
             global screen
-            if (x >= 510 and x <= 610 and y >= 50 and
-            y <= 150):
+            if (x >= 510 and x <= 610 and y >= 48 and
+            y <= 90):
                 textSize(15)
                 text("press i to go outside", 560, 150)
                 if keyPressed:
