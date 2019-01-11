@@ -1,0 +1,8 @@
+        def collision_detection():
+            global x
+            global y
+            rect(970, 50, 180, 400)
+            if (x > 910 and 50 < y < 450):
+                x == 910
+            if (910 < x < 1100 and y < 450):
+                y == 450
