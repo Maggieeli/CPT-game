@@ -60,6 +60,13 @@ def draw():
                 if keyPressed:
                     if (key == "i"):
                         screen = 2
+            if (x >= 950 and x <= 1100 and y >= 597 and 
+                y <= 660):
+                textSize(15)
+                text("press i to open chest", 560, 150)
+                if keyPressed:
+                    if (key == "i"):
+                        screen = 5
             if (keyPressed):
                 if (key == 'x'):
                     screen = 3
@@ -83,6 +90,9 @@ def draw():
         def graphics():
             rect(50, 50, 1100, 700)
             image(img_grass, 50, 50)
+            image(img_grass, 519, 50)
+            image(img_grass, 50, 450)
+            image(img_grass, 519, 450)
             fill(255)
             rect(x, y, 60, 60)
         def screen_change():
@@ -115,6 +125,15 @@ def draw():
             and mousePressed):
             screen = 0
               
+    if screen == 5:
+        background(0)
+        textSize(50)
+        text("Input Code Here", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+            and mousePressed):
+            screen = 1
+        
 def character_movement():
     if keyPressed:
         global x
