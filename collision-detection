@@ -1,42 +1,31 @@
-        def collision_detection():
-            global x
-            global y
-            rect(970, 50, 180, 400)
-            if (x > 910 and 50 < y < 450):
-                x == 910
-            if (910 < x < 1100 and y < 450):
-                y == 450
+  def point_collide(playerx,playery):
+    global x
+    global y
+    player_x1 = x
+    player_x2 = x + 50
+    player_y1 = y
+    player_y2 = y + 50
+    
+    x_coll = False
+    y_coll = False
+    
 
-
-
-x = 0
-y = 0
-
-def setup():
-    size(700, 700)
-def draw():
-    background(0)
-    rect(300, 300, 50, 50)
-    rect(x, y, 60, 60)
-    fill(255)
-def keyPressed():
-        global x
-        global y
-        if (key == CODED):
-            if (keyCode == UP and y > 50):
-                y -= 10
-            elif (keyCode == DOWN and y < 690):
-                y += 10
-            elif (keyCode == LEFT and x > 50):
-                x -= 10
-            elif (keyCode == RIGHT and x < 1090):
-                x += 10
-def collision_detection():
-    col = get(x,y)
-    if col == color(0):
-        y += 10
-        if col == color(0):
-            x -= 10
-
+    ar = [900, 50, 250, 400]
+    
+    
+    for i in ar:
+        obstical_x1 = ar[0]
+        obstical_y1 = ar[1]
+        obstical_x2 = ar[0] + ar[2]
+        obstical_y2 = ar[1] + ar[3]
+        
+        if (player_x1 or player_x2) in range(obstical_x1, obstical_x2):
+            x_coll = True
+        
+        elif (player_y1 or player_y2) in range(obstical_y1, obstical_y2):
+            y_coll = True
+            
+        if x_coll is True and y_coll is True:
+            print('its working')
     
     
