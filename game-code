@@ -161,8 +161,8 @@ def character_movement():
                 x += 3
                 
 def point_collide(playerx, playery):
-    global x
-    global y
+    x = playerx
+    y = playery
     
     player_x1 = x
     player_x2 = x + 50
@@ -171,28 +171,43 @@ def point_collide(playerx, playery):
     
     x_coll = False
     y_coll = False
+    x_coll1 = False
+    y_coll1 = False
     
 
-    ar = [900, 50, 250, 400]
+    ar = [[250, 900, 250, 50]]
     
     
-    for i in ar:
-        obstical_x1 = ar[0]
-        obstical_y1 = ar[1]
-        obstical_x2 = ar[0] + ar[2]
-        obstical_y2 = ar[1] + ar[3]
+    for line in ar:
+        obstical_x1 = line[0]
+        obstical_y1 = line[1]
+        obstical_x2 = line[0] + line[2]
+        obstical_y2 = line[1] + line[3]
         
-        if int(player_x1) or int(player_x2) in range(obstical_x1, obstical_x2):
-            x_coll == True
-
-        elif int(player_y1) or int(player_y2) in range(obstical_y1, obstical_y2):
-            y_coll == True
-
-        if x_coll == True and y_coll == True:
+        if (player_x1 < obstical_x1) or (player_x1 > obstical_x2):
+            x_coll = True
+        
+        if (player_x2 < obstical_x1) or (player_x2 > obstical_x2):
+            x_coll1 = True
+            
+        if (player_y1 < obstical_y1) or (player_y1 > obstical_y2):
+            y_coll = True
+        
+        if (player_y2 < obstical_y1) or (player_y2 > obstical_y2):
+            y_coll1 = True
+        
+        if (x_coll == True and y_coll == True) and (x_coll1 == True and y_coll1 == True):
 
             print('wwwhwhwhy is it not working')
-
-    
+        
+        else:
+            print("NIgeria")
+            
+        x_coll = False
+        y_coll = False
+        x_coll1 = False
+        y_coll1 = False
+        
 def main_menu():
     global screen
     textSize(70)
