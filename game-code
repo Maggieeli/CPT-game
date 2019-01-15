@@ -198,10 +198,10 @@ def point_collide(playerx, playery):
         
         if (x_coll == True and y_coll == True) and (x_coll1 == True and y_coll1 == True):
 
-            print('wwwhwhwhy is it not working')
+            print('within funiture')
         
         else:
-            print("NIgeria")
+            print("outside of funiture")
             
         x_coll = False
         y_coll = False
