@@ -95,6 +95,7 @@ def draw():
         display_location()
         point_collide(x,y)
 
+
     if screen == 2:
         background(135,206,250)
         def graphics():
@@ -161,8 +162,6 @@ def character_movement():
                 x += 3
                 
 def point_collide(playerx, playery):
-    x = playerx
-    y = playery
     
     player_x1 = x
     player_x2 = x + 50
@@ -173,7 +172,7 @@ def point_collide(playerx, playery):
     y_coll = False
     
 
-    obstacles = [[900, 50, 250, 400],[900, 590, 250, 160]]
+    obstacles = [[900, 50, 250, 400]]
     
     
     for line in obstacles:
@@ -185,9 +184,22 @@ def point_collide(playerx, playery):
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
             x_coll = True
             
+            if keyPressed:
+                if (key == RIGHT):
+                    player_x2 == obstical_x1
+            if keyPressed:
+                if (key == LEFT):
+                    player_x1 == obstical_x2
+            player_x2 == obstical_x1
+            
         if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
             y_coll = True
-        
+            if keyPressed:
+                if (key == DOWN):
+                    player_y2 == obstical_y1
+            if keyPressed:
+                if (key == UP):
+                    player_y1 == obstical_y2
         
         if x_coll is True and y_coll is True:
 
@@ -198,6 +210,8 @@ def point_collide(playerx, playery):
             
         x_coll = False
         y_coll = False
+
+
 def main_menu():
     global screen
     textSize(70)
