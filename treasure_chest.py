@@ -1,5 +1,8 @@
-answer = "shadow"
-guess = user(input)
+a = ""
+guess = ""
+answer = str("shadow")
 
-while user(input) != answer:
-    
+while guess != answer:
+    if keyPressed:
+        a = key
+    guess += a
