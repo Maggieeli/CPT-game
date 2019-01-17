@@ -1,8 +1,10 @@
 global x
 global y
 global screen
-x = 60
-y = 60
+global obstacles
+obstacles = [[900, 50, 250, 400], [50, 50, 350, 150], [900, 590, 250, 160], [50, 550, 400, 200]]
+x = 200
+y = 250
 screen = 0
 
 def setup():
@@ -46,13 +48,16 @@ def draw():
             image(img_croppedfloor, 780, 430)
             image(img_floor, 355, 525)
             image(img_croppedfloor, 780, 620)
+            image(img_floor, 355, 655)
             img_door.resize(160, 50)
             #display cabinet
-            rect(900, 50, 250, 400)
+            rect(909, 50, 241, 400)
             #couch
             rect(50, 50, 350, 150)
             #treasure chest
             rect(900, 590, 250, 160)
+            #T.V.
+            rect(50, 550, 400, 200)
             fill(255)
             rect(x, y, 60, 60)
         def screen_change():
@@ -69,11 +74,11 @@ def draw():
             if (x >= 850 and x <= 1150 and y >= 540 and 
                 y <= 750):
                 textSize(15)
-                text("press i to open chest", 760, 600)
+                text("press i to open chest", 760, 550)
                 if keyPressed:
                     if (key == "i"):
                         screen = 5
-            if (x >= 850 and x <= 900 and y >= 100 and y <= 400):
+            if (x >= 800 and x <= 900 and y >= 100 and y <= 400):
                 textSize(15)
                 text("press x to inspect", 700, 250)
                 if (keyPressed):
@@ -88,12 +93,16 @@ def draw():
             textSize(15)
             text(str(x), 10, 20)
             text(str(y), 10, 40)
+            if point_collide(x,y) == True:
+                print("colliding")
+            
+            else:
+                print("no collision")
             
         character_movement()
         graphics()
         screen_change()
         display_location()
-        point_collide(x,y)
 
 
     if screen == 2:
@@ -148,21 +157,37 @@ def draw():
             screen = 1
         
 def character_movement():
+    global x_coll
+    global y_coll
+
     if keyPressed:
         global x
         global y
-        if (key == CODED):
+        if (key == CODED) and (point_collide(x,y) == False):
             if (keyCode == UP and y > 50):
                 y -= 3
+                if point_collide(x,y) == True:
+                    y += 3
+            
             elif (keyCode == DOWN and y < 690):
                 y += 3
+                if point_collide(x,y) == True:
+                    y -= 3
+
             elif (keyCode == LEFT and x > 50):
                 x -= 3
+                if point_collide(x,y) == True:
+                    x += 3
+
             elif (keyCode == RIGHT and x < 1090):
                 x += 3
-                
+                if point_collide(x,y) == True:
+                    x -= 3
+
+        
 def point_collide(playerx, playery):
-    
+    global x_coll
+    global y_coll
     player_x1 = x
     player_x2 = x + 50
     player_y1 = y
@@ -171,45 +196,27 @@ def point_collide(playerx, playery):
     x_coll = False
     y_coll = False
     
-
-    obstacles = [[900, 50, 250, 400]]
+    global obstacles
     
     
-    for line in obstacles:
-        obstical_x1 = line[0]
-        obstical_y1 = line[1]
-        obstical_x2 = line[0] + line[2]
-        obstical_y2 = line[1] + line[3]
+    for furniture in obstacles:
+        obstical_x1 = furniture[0]
+        obstical_y1 = furniture[1]
+        obstical_x2 = furniture[0] + furniture[2]
+        obstical_y2 = furniture[1] + furniture[3]
         
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
             x_coll = True
-            
-            if keyPressed:
-                if (key == RIGHT):
-                    player_x2 == obstical_x1
-            if keyPressed:
-                if (key == LEFT):
-                    player_x1 == obstical_x2
             player_x2 == obstical_x1
             
         if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
             y_coll = True
-            if keyPressed:
-                if (key == DOWN):
-                    player_y2 == obstical_y1
-            if keyPressed:
-                if (key == UP):
-                    player_y1 == obstical_y2
         
         if x_coll is True and y_coll is True:
-
-            print('within funiture')
+            return True
         
-        else:
-            print("outside of funiture")
+    return False
             
-        x_coll = False
-        y_coll = False
 
 
 def main_menu():
