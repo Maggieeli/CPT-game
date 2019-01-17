@@ -208,14 +208,22 @@ def display_location():
     
 def screen2():
     global y2
+    global screen
     background(135,206,250)
     rect(50, 50, 1100, 700)
     image(img_grass, 50, 50)
     image(img_grass, 519, 50)
     image(img_grass, 50, 450)
     image(img_grass, 519, 450)
+    image(img_door, 510, 690)
     fill(255)
     rect(x, y2, 60, 60)
+    if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
+        textSize(15)
+        text("press i to go inside", 510, 650)
+        if (keyPressed):
+            if (key == 'i'):
+                screen = 1
     if keyPressed:
         global x
         if (key == CODED):
