@@ -8,17 +8,72 @@ y = 600
 screen = 0
 
 def setup():
-    size(1200, 800)
-    background(0)
     global img_floor
     global img_door
     global img_croppedfloor
     global img_grass
+    size(1200, 800)
+    background(0)
     img_floor = loadImage("FloorPixel.png")
     img_door = loadImage("door.png")
     img_croppedfloor = loadImage("FloorPixelCropped.png")
     img_grass = loadImage("grass.png")
 
+def draw():
+    global screen
+    global img_floor
+    global img_door
+    global img_grass
+    if screen == 0:
+        background(0, 0, 205)
+        fill(255)
+        main_menu()
+    
+    if screen == 1:
+        background(0)
+        character_movement()
+        graphics()
+        screen_change()
+        display_location()
+
+    if screen == 2:
+        background(135,206,250)
+        character_movement()
+        screen_change()
+        graphics()
+        
+    if screen == 3:
+        background(0)
+        fill(255)
+        text("I can only live where there is light, but I die if the light shines on me. What I am I?", 50, 50)
+        if keyPressed:
+            if (key =='q'):
+                screen = 1
+        if keyPressed:
+            if (key == 'w'):
+                screen = 2
+                
+    if screen == 4:
+        background(0, 0, 205)
+        textSize(50)
+        text("You check the funiture for pieces of a riddle,", 50, 50)
+        text("once you obtain the anwser you must input the answer in to the treasure chest to win", 50, 90)
+        text("answer in to the treasure chest to win", 50, 130)
+        textSize(30)
+        text("Back", 1000, 600)
+        if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
+            and mousePressed):
+            screen = 0
+              
+    if screen == 5:
+        background(0)
+        textSize(50)
+        text("Input Code Here", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+            and mousePressed):
+            screen = 1
+        
 def graphics():
     rect(50, 50, 1100, 700)
     image(img_floor, 50, 50)
@@ -86,60 +141,7 @@ def display_location():
     text(str(x), 10, 20)
     text(str(y), 10, 40)
 
-def draw():
-    global screen
-    global img_floor
-    global img_door
-    global img_grass
-    if screen == 0:
-        background(0, 0, 205)
-        fill(255)
-        main_menu()
-    
-    if screen == 1:
-        background(0)
-        character_movement()
-        graphics()
-        screen_change()
-        display_location()
 
-    if screen == 2:
-        background(135,206,250)
-        character_movement()
-        screen_change()
-        graphics()
-        
-    if screen == 3:
-        background(0)
-        fill(255)
-        text("I can only live where there is light, but I die if the light shines on me. What I am I?", 50, 50)
-        if keyPressed:
-            if (key =='q'):
-                screen = 1
-        if keyPressed:
-            if (key == 'w'):
-                screen = 2
-                
-    if screen == 4:
-        background(0, 0, 205)
-        textSize(50)
-        text("You check the funiture for pieces of a riddle,", 50, 50)
-        text("once you obtain the anwser you must input the answer in to the treasure chest to win", 50, 90)
-        text("answer in to the treasure chest to win", 50, 130)
-        textSize(30)
-        text("Back", 1000, 600)
-        if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
-            and mousePressed):
-            screen = 0
-              
-    if screen == 5:
-        background(0)
-        textSize(50)
-        text("Input Code Here", 500, 550)
-        text("back", 50, 50)
-        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
-            and mousePressed):
-            screen = 1
         
 def character_movement():
     global x, y
