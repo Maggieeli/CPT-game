@@ -77,7 +77,7 @@ def draw():
     if screen == 4:
         background(0)
         fill(255)
-        text("I can only live where there is light, but I die if the light shines on me. What I am I?", 50, 50)
+        text("I can only live where there is light, but I die if the light shines on me. What am I?", 50, 50)
         if keyPressed:
             if (key =='q'):
                 screen = 1
@@ -226,7 +226,7 @@ def room_screen_change():
         text("press x to inspect", 760, 550)
         if keyPressed:
             if (key == "x"):
-                screen = 3
+                screen = 6
     #chest
     if (x >= 900 and x <= 1050 and y >= 50 and y <= 280):
         textSize(15)
@@ -249,13 +249,13 @@ def room_screen_change():
             if (key == 'x'):
                 screen = 5
     #upstairs
-    if (keyPressed):
-        if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
-            textSize(15)
-            text("press i to go upstairs", 770, 600)
-            if keyPressed:
-                if (key == "i"):
-                    screen = 3
+
+    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+        textSize(15)
+        text("press i to go upstairs", 770, 600)
+        if keyPressed:
+            if (key == "i"):
+                screen = 3
             
 def display_location():
     global x, y
@@ -450,14 +450,14 @@ def upstairs():
     upstairs_movement()
     bedroom_graphics()
     display_location()
-    bedroom_screen_change()
+
     #bedroom_screen_change()
     if keyPressed:
         if key == 'e':
             screen = 1
             
 def upstairs_pc(playerx, playery):
-    global obstacles
+    global upstairs_obstacles
     
     player_x1 = x
     player_x2 = x + 60
@@ -515,4 +515,4 @@ def upstairs_movement():
             if upstairs_pc(x,y) == True:
                 x -= 5
     
-        
+    
