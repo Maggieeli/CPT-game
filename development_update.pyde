@@ -188,27 +188,6 @@ def room_graphics():
     rect(*room_obstacles[3])
     #stairs
     rect(*room_obstacles[4])
-
-def bedroom_graphics():
-    global obstacles
-    image(img_floor, 50, 50)
-    image(img_floor, 50, 145)
-    image(img_floor, 50, 240)
-    image(img_floor, 50, 335)
-    image(img_floor, 50, 430)
-    image(img_floor, 50, 525)
-    image(img_floor, 50, 620)
-    image(img_croppedfloor, 780, 50)
-    image(img_floor, 355, 145)
-    image(img_croppedfloor, 780, 240)
-    image(img_floor, 355, 335)
-    image(img_croppedfloor, 780, 430)
-    image(img_floor, 355, 525)
-    image(img_croppedfloor, 780, 620)
-    image(img_floor, 355, 655)
-    image(img_floor, 50, 655)
-    fill(255)
-    rect(x, y, 60, 60)
     
 def room_screen_change():
     global x
@@ -233,21 +212,21 @@ def room_screen_change():
         text("press o to open chest", 700, 250)
         if (keyPressed):
             if (key == 'o'):
-                screen = 5
+                screen = 6
     #couch
     if (x >= 100 and x <= 350 and y >= 50 and y <= 280):
         textSize(15)
         text("press x to inspect", 200, 250)
         if (keyPressed):
             if (key == 'x'):
-                screen = 5
+                screen = 6
     #goldfish
     if (x >= 100 and x <= 350 and y >= 500 and y <= 1050):
         textSize(15)
         text("press x to inspect", 300, 550)
         if (keyPressed):
             if (key == 'x'):
-                screen = 5
+                screen = 6
     #upstairs
 
     if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
@@ -378,8 +357,9 @@ def outdoor_graphics():
     image(img_tree, 220, 150)
     image(img_tree, 800, 120)
     image(img_berry, 95,450)
-    fill(255)
-    rect(x, y2, 60, 60)    
+    noFill()
+    rect(x, y2, 60, 60) 
+    image(img_ted_down, x, y2)   
 
 def outdoor_displaylocation():
     global x
@@ -450,12 +430,39 @@ def upstairs():
     upstairs_movement()
     bedroom_graphics()
     display_location()
+    bedroom_screen_change()
 
-    #bedroom_screen_change()
-    if keyPressed:
-        if key == 'e':
-            screen = 1
+def bedroom_screen_change():
+    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+        textSize(15)
+        text("press r to go downstairs", 770, 600)
+        #notworking!! >:(
+        if (keyPressed):
+            if (key == "r"):
+                screen = 1   
             
+def bedroom_graphics():
+    global obstacles
+    image(img_floor, 50, 50)
+    image(img_floor, 50, 145)
+    image(img_floor, 50, 240)
+    image(img_floor, 50, 335)
+    image(img_floor, 50, 430)
+    image(img_floor, 50, 525)
+    image(img_floor, 50, 620)
+    image(img_croppedfloor, 780, 50)
+    image(img_floor, 355, 145)
+    image(img_croppedfloor, 780, 240)
+    image(img_floor, 355, 335)
+    image(img_croppedfloor, 780, 430)
+    image(img_floor, 355, 525)
+    image(img_croppedfloor, 780, 620)
+    image(img_floor, 355, 655)
+    image(img_floor, 50, 655)
+    noFill()
+    rect(x, y, 60, 60)
+    image(img_ted_down, x, y)
+    
 def upstairs_pc(playerx, playery):
     global upstairs_obstacles
     
@@ -515,4 +522,4 @@ def upstairs_movement():
             if upstairs_pc(x,y) == True:
                 x -= 5
     
-    
+        
