@@ -1,4 +1,4 @@
-global x, y
+global x, y, y2
 global screen
 global obstacles
 timeElapsed = None
@@ -39,6 +39,8 @@ def setup():
 
 def draw():
     global screen
+    global x
+    global y
     
     if screen == 0:
         background(0, 0, 205)
@@ -116,7 +118,7 @@ def draw():
         textSize(50)
         text("WINNER, WINNER!", 500, 550)
 
-'''
+
     if screen == 8:
         import time
         global timeElapsed
@@ -134,16 +136,15 @@ def draw():
             textSize(20)
             text("Just kidding. We don't care.", 300, 500)
              
-        if millis() > timeElapsed + 5'000':
+        if millis() > timeElapsed + 5000:
             fill(255)
             textSize(20)
             text("Your new name is Ted Bundy.", 300, 600)
         
-        if millis() > timeElapsed + 8'000':
+        if millis() > timeElapsed + 8000:
             timeElapsed = None
             screen = 1
-'''
-        
+
 def room_graphics():
     global obstacles
     global x
@@ -178,7 +179,7 @@ def room_graphics():
         rect(*furniture)
     noFill()
     #character
-    rect(x, y + 80, 60, 0)
+    rect(x, y, 60, 0)
 
 def bedroom_graphics():
     global obstacles
@@ -257,38 +258,41 @@ def display_location(x, y):
 
 
         
-def character_movement(x, y, obstacles_ar):
+def character_movement(playerx, playery, obstacles_ar):
+    global x
+    global y
+    global y2
     print(obstacles_ar)
     print(x)
     print(y)
-    print(point_collide(x, y, obstacles_ar))
+    print(point_collide(playerx, playery, obstacles_ar))
     if keyPressed and key == CODED:
         if keyCode == UP and y >= 50:
             y -= 5
             print("up")
-            if point_collide(x, y, obstacles_ar) == True:
+            if point_collide(playerx, playery, obstacles_ar) == True:
                 y += 5
         if (keyCode == DOWN and y <= 690):
             y += 5
             print("down")
-            if point_collide(x, y, obstacles_ar) == True:
+            if point_collide(playerx, playery, obstacles_ar) == True:
                 y -= 5 
 
         if (keyCode == LEFT and x >= 50):
             x -= 5
             print("left")
-            if point_collide(x, y, obstacles_ar) == True:
+            if point_collide(playerx, playery, obstacles_ar) == True:
                 x += 5
 
         if (keyCode == RIGHT and x <= 1090):
             x += 5
             print("right")
-            if point_collide(x, y, obstacles_ar) == True:
+            if point_collide(playerx, playery, obstacles_ar) == True:
                 x -= 5
 
         
-def point_collide(x, y, obstacles_ar):
-    
+def point_collide(playerx, playery, obstacles_ar):
+    global x, y, y2
     player_x1 = x
     player_x2 = x + 60
     player_y1 = y
@@ -371,8 +375,3 @@ def outdoor_graphics():
     rect(x, y2, 60, 60)    
 
 
-
-            
-            
-    
-        
