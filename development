@@ -286,9 +286,9 @@ def outdoor_screenchange():
             screen = 3
     if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
         textSize(15)
-        text("press f to go inside", 510, 650)
+        text("press O to go inside", 510, 650)
         if (keyPressed):
-            if (key == 'f'):
+            if (key == 'o'):
                 screen = 1
                 
 def outdoor_graphics():
