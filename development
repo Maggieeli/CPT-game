@@ -200,6 +200,7 @@ def screen2():
         image(img_grass, 50, 450)
         image(img_grass, 519, 450)
         image(img_door, 510, 690)
+        img_door.resize(160, 50)
         fill(255)
         rect(x, y2, 60, 60)
     if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
