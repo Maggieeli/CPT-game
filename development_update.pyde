@@ -17,6 +17,7 @@ def setup():
     global img_chest
     global img_desk
     global img_carpet
+    global mono
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -28,6 +29,7 @@ def setup():
     img_chest = loadImage("chest.png")
     img_desk = loadImage("desk.png")
     img_carpet = loadImage("carpet.png")
+    mono = loadFont("LucidaSans-Typewriter-48.vlw")
 
 def draw():
     global screen   
@@ -59,10 +61,11 @@ def draw():
                 
     if screen == 4:
         background(0, 0, 205)
-        textSize(50)
-        text("You check the funiture for pieces of a riddle,", 50, 50)
-        text("once you obtain the anwser you must input the answer in to the treasure chest to win", 50, 90)
-        text("answer in to the treasure chest to win", 50, 130)
+        textSize(30)
+        textFont(mono)
+        text("You check the funiture for pieces of a riddle,", 30, 50)
+        text("once you obtain the anwser you must input the answer in to the treasure chest to win", 30, 90)
+        text("answer in to the treasure chest to win", 30, 130)
         textSize(30)
         text("Back", 1000, 600)
         if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
@@ -77,12 +80,32 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
             and mousePressed):
             screen = 1
+        '''
+        a = ""
+        guess = ""
+        answer = str("shadow")
+        while guess != answer:
+            if keyPressed:
+                a = key
+            guess += a
+        if guess == answer:
+            screen = 7
+        '''
+        
     if screen == 6:
         background(0)
         character_movement()
         bedroom_graphics()
-        living_room_screen_change()
+        #bedroom_screen_change()
         display_location()
+        if keyPressed:
+            if key == 'e':
+                screen = 1
+    if screen == 7:
+        background(0)
+        textSize(50)
+        text("WINNER, WINNER!", 500, 550)
+            
         
 def living_room_graphics():
     global obstacles
@@ -152,28 +175,42 @@ def living_room_screen_change():
         if keyPressed:
             if (key == "i"):
                 screen = 2
+    #chest
     if (x >= 800 and x <= 1150 and y >= 350 and y <= 750):
         textSize(15)
         text("press x to inspect", 760, 550)
         if keyPressed:
-            if (key == "i"):
-                screen = 5
+            if (key == "x"):
+                screen = 3
     if (x >= 900 and x <= 1050 and y >= 50 and y <= 280):
         textSize(15)
-        text("press i to open chest", 700, 250)
+        text("press o to open chest", 700, 250)
         if (keyPressed):
-            if (key == 'x'):
-                screen = 3
+            if (key == 'o'):
+                screen = 5
     if (keyPressed):
         if (key == 'j'):
             screen += 1
-    if (x >= 510 and x <= 610 and y >= 600 and
-    y <= 750):
+    if (x >= 510 and x <= 610 and y >= 600 and y <= 750):
         textSize(15)
         text("press i to go to the bedroom", 520, 550)
         if keyPressed:
             if (key == "i"):
                 screen = 6
+    #couch
+    if (x >= 100 and x <= 350 and y >= 50 and y <= 280):
+        textSize(15)
+        text("press x to inspect", 200, 250)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 5
+    #goldfish
+    if (x >= 100 and x <= 350 and y >= 400 and y <= 1050):
+        textSize(15)
+        text("press x to inspect", 200, 500)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 5
             
 def display_location():
     global x
@@ -308,15 +345,3 @@ def screen2():
     outdoor_graphics()
     outdoor_screenchange()
         
-'''
-a = ""
-guess = ""
-answer = str("shadow")
-while guess != answer:
-    if keyPressed:
-        a = key
-    guess += a
-    if guess = answer:
-        state =  #victory screen
-'''
-
