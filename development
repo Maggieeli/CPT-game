@@ -156,7 +156,7 @@ def draw():
     if screen == 17:
         background(0)
         textSize(50)
-        text("Input Code Here", 500, 550)
+        text("is light", 500, 550)
         text("back", 50, 50)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
@@ -165,7 +165,7 @@ def draw():
     if screen == 18:
         background(255,0,0)
         textSize(50)
-        text("Input Code Here", 500, 550)
+        text("the light", 500, 550)
         text("back", 50, 50)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
@@ -174,7 +174,7 @@ def draw():
     if screen == 19:
         background(0,0,255)
         textSize(50)
-        text("Input Code Here", 500, 550)
+        text("I can", 500, 550)
         text("back", 50, 50)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
@@ -184,7 +184,7 @@ def draw():
         background(255)
         textSize(50)
         fill(0)
-        text("Input Code Here", 500, 550)
+        text("am I?", 500, 550)
         text("back", 50, 50)
         fill(255)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
