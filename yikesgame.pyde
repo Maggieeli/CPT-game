@@ -5,6 +5,7 @@ global obstacles
 obstacles = [[900, 50, 250, 400], [50, 50, 350, 200], [900, 590, 250, 160], [50, 550, 400, 200]]
 x = 600
 y = 600
+y2 = 609
 screen = 0
 
 def setup():
@@ -12,6 +13,7 @@ def setup():
     global img_door
     global img_croppedfloor
     global img_couch
+    global img_grass
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -19,6 +21,7 @@ def setup():
     img_croppedfloor = loadImage("FloorPixelCropped.png")
     img_grass = loadImage("grass.png")
     img_couch =loadImage("couch.png")
+    img_grass = loadImage("grass.png")
 
 def draw():
     global screen
@@ -26,6 +29,7 @@ def draw():
     global img_door
     global img_croppedfloor
     global img_couch
+    global img_grass
     if screen == 0:
         background(0, 0, 205)
         fill(255)
@@ -39,10 +43,7 @@ def draw():
         display_location()
 
     if screen == 2:
-        background(135,206,250)
-        character_movement()
-        screen_change()
-        graphics()
+        screen2()
         
     if screen == 3:
         background(0)
@@ -219,6 +220,54 @@ def main_menu():
     if (mouseX >= 500 and mouseX <= 775 and mouseY >= 575 and mouseY <=615
         and mousePressed):
         screen = 4
+
+        
+        
+def screen2():
+    global y2
+    global screen
+    def outdoor_graphics():
+        background(135,206,250)
+        rect(50, 50, 1100, 700)
+        image(img_grass, 50, 50)
+        image(img_grass, 519, 50)
+        image(img_grass, 50, 450)
+        image(img_grass, 519, 450)
+        image(img_door, 510, 690)
+        img_door.resize(160, 50)
+        fill(255)
+        rect(x, y2, 60, 60)
+    if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
+        textSize(15)
+        text("press i to go inside", 510, 650)
+        if (keyPressed):
+            if (key == 'i'):
+                screen = 1
+    if keyPressed:
+        global x
+        if (key == CODED):
+            if (keyCode == UP and y2 > 50):
+                y2 -= 3
+            elif (keyCode == DOWN and y2 < 690):
+                y2 += 3
+            elif (keyCode == LEFT and x > 50):
+                x -= 3
+            elif (keyCode == RIGHT and x < 1090):
+                x += 3
+    def outdoor_screenchange():
+        global screen
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 3
+    def display_location2():
+        global x
+        textSize(15)
+        text(str(x), 10, 20)
+        text(str(y2), 10, 40)
+    outdoor_screenchange()
+    display_location2()
+    outdoor_graphics()
+        
 '''
 a = ""
 guess = ""
