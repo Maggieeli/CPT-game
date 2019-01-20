@@ -30,14 +30,6 @@ def draw():
     
     if screen == 1:
         background(0)
-        #display cabinet
-        rect(900, 50, 250, 400)
-        #couch
-        rect(50, 50, 350, 150)
-        #treasure chest
-        rect(900, 590, 250, 160)
-        fill(255)
-        rect(x, y, 60, 60)
         def screen_change():
             global x
             global y
