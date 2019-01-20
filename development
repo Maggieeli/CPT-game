@@ -232,3 +232,4 @@ def screen2():
         text(str(y2), 10, 40)
     screen_change()
     display_location2()
+    outdoor_graphics()
