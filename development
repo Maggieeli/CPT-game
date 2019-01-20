@@ -2,10 +2,12 @@ global x
 global y
 global screen
 global obstacles
+global outdoor_obstacles
 obstacles = [[900, 50, 250, 400], [50, 50, 350, 200], [900, 590, 250, 160], [50, 550, 400, 200]]
+outdoor_obstacles = [[220, 150, 160, 140], [95, 395, 195, 260], [645, 100, 245, 210], [835, 435, 100, 180]]
 x = 600
 y = 600
-y2 = 609
+y2 = 610
 screen = 0
 
 def setup():
@@ -205,7 +207,42 @@ def point_collide(playerx, playery):
             return True
         
     return False
+       
+def outdoor_pc(playerx, playery2):
+    global outdoor_obstacles
+    
+    player_x1 = x
+    player_x2 = x + 60
+    player_y1 = y
+    player_y2 = y + 60
+    
+    
+    
+    for nature in outdoor_obstacles:
+        x_coll = False
+        y_coll = False
+        
+        obstical_x1 = nature[0]
+        obstical_y1 = nature[1]
+        obstical_x2 = nature[0] + nature[2]
+        obstical_y2 = nature[1] + nature[3]
+        
+
+        noFill()
+        stroke(0, 255, 0)
+        rect(*nature)
+        
+        if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
+
+            x_coll = True
             
+        if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
+            y_coll = True
+        
+        if x_coll is True and y_coll is True:
+            return True
+        
+    return False    
 
 def main_menu():
     global screen
@@ -258,19 +295,29 @@ def outdoor_displaylocation():
     text(str(y2), 10, 40)
     
 def outdoor_movement():
-    if keyPressed:
-        global x
-        global y2
-        if (key == CODED):
-            if (keyCode == UP and y2 > 50):
-                y2 -= 3
-            elif (keyCode == DOWN and y2 < 690):
-                y2 += 3
-            elif (keyCode == LEFT and x > 50):
-                x -= 3
-            elif (keyCode == RIGHT and x < 1090):
-                x += 3
+    global x, y2
     
+    if keyPressed and key == CODED:
+        if keyCode == UP and y2 >= 50:
+            y2 -= 5
+            if outdoor_pc(x,y2) == True:
+                y2 += 5
+        
+        if (keyCode == DOWN and y2 <= 690):
+            y2 += 5
+            if outdoor_pc(x,y2) == True:
+                y2 -= 5 
+
+        if (keyCode == LEFT and x >= 50):
+            x -= 5
+            if outdoor_pc(x,y2) == True:
+                x += 5
+
+        if (keyCode == RIGHT and x <= 1090):
+            x += 5
+            if outdoor_pc(x,y2) == True:
+                x -= 5
+                        
 '''
 a = ""
 guess = ""
