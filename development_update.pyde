@@ -250,14 +250,12 @@ def room_screen_change():
                 screen = 5
     #upstairs
     if (keyPressed):
-        if (key == 'j'):
-            screen += 1
-    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
-        textSize(15)
-        text("press i to go upstairs", 770, 600)
-        if keyPressed:
-            if (key == "i"):
-                screen = 6
+        if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+            textSize(15)
+            text("press i to go upstairs", 770, 600)
+            if keyPressed:
+                if (key == "i"):
+                    screen = 3
             
 def display_location():
     global x, y
