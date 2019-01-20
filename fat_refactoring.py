@@ -51,6 +51,8 @@ def draw():
         room_graphics()
         room_screenchange()
         display_location(x, y)
+        if keyPressed and key == "e":
+            screen = 6
 
     if screen == 2:
         character_movement(x, y2, outdoor_obstacles)
@@ -93,22 +95,21 @@ def draw():
     if screen == 6:
         background(0)
         textSize(50)
-        text("Input Code Here", 500, 550)
         text("back", 50, 50)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
             and mousePressed):
             screen = 1
-    '''
-        a = ""
+        answer = "shadow"
         guess = ""
-        answer = str("shadow")
+
         while guess != answer:
             if keyPressed:
-                a = key
-            guess += a
-        if guess == answer:
-            screen = 7
-    '''
+                guess += key
+            elif guess == answer:
+                screen = 7
+            if key == ESC:
+                guess = ""
+
     
     if screen == 7:
         background(0)
@@ -371,4 +372,7 @@ def outdoor_graphics():
 
 
 
-         
+            
+            
+    
+        
