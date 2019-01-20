@@ -2,7 +2,7 @@ global x
 global y
 global screen
 global obstacles
-obstacles = [[950, 350, 200, 400], [50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 180]]
+obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 180], [110, 320, 300, 100], [940, 545, 5, 200]]
 x = 600
 y = 600
 y2 = 609
@@ -17,6 +17,7 @@ def setup():
     global img_chest
     global img_desk
     global img_carpet
+    global img_stairs
     global mono
     size(1200, 800)
     background(0)
@@ -29,6 +30,7 @@ def setup():
     img_chest = loadImage("chest.png")
     img_desk = loadImage("desk.png")
     img_carpet = loadImage("carpet.png")
+    img_stairs = loadImage("stairs.png")
     mono = loadFont("LucidaSans-Typewriter-48.vlw")
 
 def draw():
@@ -130,15 +132,19 @@ def living_room_graphics():
     image(img_couch, 50, 50)
     image(img_chest, 900, 50)
     image(img_desk, 0, 525)
-    #display cabinet
+    image(img_stairs, 945, 540)
+    image(img_stairs, 945, 640)
     noFill()
-    rect(*obstacles[0])
     #couch
-    rect(*obstacles[1])
+    rect(*obstacles[0])
     #treasure chest
+    rect(*obstacles[1])
+    #goldfish
     rect(*obstacles[2])
-    #T.V.
+    #table
     rect(*obstacles[3])
+    #stairs
+    rect(*obstacles[4])
     fill(255)
     rect(x, y, 60, 60)
 
@@ -175,28 +181,20 @@ def living_room_screen_change():
         if keyPressed:
             if (key == "i"):
                 screen = 2
-    #chest
-    if (x >= 800 and x <= 1150 and y >= 350 and y <= 750):
+    #stairs
+    if (x >= 800 and x <= 900 and y >= 600 and y <= 750):
         textSize(15)
         text("press x to inspect", 760, 550)
         if keyPressed:
             if (key == "x"):
                 screen = 3
+    #chest
     if (x >= 900 and x <= 1050 and y >= 50 and y <= 280):
         textSize(15)
         text("press o to open chest", 700, 250)
         if (keyPressed):
             if (key == 'o'):
                 screen = 5
-    if (keyPressed):
-        if (key == 'j'):
-            screen += 1
-    if (x >= 510 and x <= 610 and y >= 600 and y <= 750):
-        textSize(15)
-        text("press i to go to the bedroom", 520, 550)
-        if keyPressed:
-            if (key == "i"):
-                screen = 6
     #couch
     if (x >= 100 and x <= 350 and y >= 50 and y <= 280):
         textSize(15)
@@ -211,6 +209,16 @@ def living_room_screen_change():
         if (keyPressed):
             if (key == 'x'):
                 screen = 5
+    #upstairs
+    if (keyPressed):
+        if (key == 'j'):
+            screen += 1
+    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+        textSize(15)
+        text("press i to go upstairs", 770, 600)
+        if keyPressed:
+            if (key == "i"):
+                screen = 6
             
 def display_location():
     global x
@@ -344,6 +352,3 @@ def screen2():
     display_location2()
     outdoor_graphics()
     outdoor_screenchange()
-        
-
-    
