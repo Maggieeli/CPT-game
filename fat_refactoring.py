@@ -59,7 +59,13 @@ def draw():
         display_location(x, y2)
         
     if screen == 3:
-        upstairs()
+        upstairs_movement()
+        bedroom_graphics()
+        display_location()
+        bedroom_screenchange()
+        if keyPressed:
+            if key == 'e':
+                screen = 1
         
     if screen == 4:
         background(0)
@@ -364,74 +370,5 @@ def outdoor_graphics():
     rect(x, y2, 60, 60)    
 
 
-def upstairs():
-    background(0)
-    upstairs_movement()
-    bedroom_graphics()
-    display_location()
-    bedroom_screenchange()
-    #bedroom_screenchange()
-    if keyPressed:
-        if key == 'e':
-            screen = 1
-            
-def upstairs_pc(playerx, playery):
-    global obstacles
-    
-    player_x1 = x
-    player_x2 = x + 60
-    player_y1 = y
-    player_y2 = y + 60
-    
-    
-    
-    for upstairs in upstairs_obstacles:
-        x_coll = False
-        y_coll = False
-        
-        obstical_x1 = upstairs[0]
-        obstical_y1 = upstairs[1]
-        obstical_x2 = upstairs[0] + upstairs[2]
-        obstical_y2 = upstairs[1] + upstairs[3]
-        
 
-        noFill()
-        stroke(0, 255, 0)
-        rect(*upstairs)
-        
-        if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
-            x_coll = True
-            
-        if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
-            y_coll = True
-        
-        if x_coll is True and y_coll is True:
-            return True
-        
-    return False
-            
-def upstairs_movement():
-    global x, y
-
-    if keyPressed and key == CODED:
-        if keyCode == UP and y >= 50:
-            y -= 5
-            if upstairs_pc(x,y) == True:
-                y += 5
-        
-        if (keyCode == DOWN and y <= 690):
-            y += 5
-            if upstairs_pc(x,y) == True:
-                y -= 5 
-
-        if (keyCode == LEFT and x >= 50):
-            x -= 5
-            if upstairs_pc(x,y) == True:
-                x += 5
-
-        if (keyCode == RIGHT and x <= 1090):
-            x += 5
-            if upstairs_pc(x,y) == True:
-                x -= 5
-    
-        
+         
