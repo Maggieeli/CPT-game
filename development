@@ -4,7 +4,7 @@ global screen
 global obstacles
 global outdoor_obstacles
 obstacles = [[900, 50, 250, 400], [50, 50, 350, 200], [900, 590, 250, 160], [50, 550, 400, 200]]
-outdoor_obstacles = [[220, 150, 160, 140], [95, 395, 195, 260], [645, 100, 245, 210], [835, 435, 100, 180]]
+outdoor_obstacles = [[220, 150, 256, 256], [95, 450, 198, 170], [645, 100, 256, 256], [835, 435, 100, 180]]
 x = 600
 y = 600
 y2 = 610
@@ -16,6 +16,11 @@ def setup():
     global img_croppedfloor
     global img_couch
     global img_grass
+    global img_tree
+    global img_berry
+    global img_grassCropped
+    global img_grassCropped2
+    global img_grassCropped3
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -24,6 +29,11 @@ def setup():
     img_grass = loadImage("grass.png")
     img_couch =loadImage("couch.png")
     img_grass = loadImage("grass.png")
+    img_tree = loadImage("tree.png")
+    img_berry = loadImage("berry.png")
+    img_grassCropped = loadImage("grassCropped.png")
+    img_grassCropped2 = loadImage("grassCropped2.png")
+    img_grassCropped3 = loadImage("grassCropped3.png") 
 
 def draw():
     global screen
@@ -32,6 +42,11 @@ def draw():
     global img_croppedfloor
     global img_couch
     global img_grass
+    global img_tree
+    global img_berry
+    global img_grassCropped
+    global img_grassCropped2
+    global img_grassCropped3
     if screen == 0:
         background(0, 0, 205)
         fill(255)
@@ -281,10 +296,17 @@ def outdoor_graphics():
     rect(50, 50, 1100, 700)
     image(img_grass, 50, 50)
     image(img_grass, 519, 50)
-    image(img_grass, 50, 450)
-    image(img_grass, 519, 450)
+    image(img_grass, 50, 355)
+    image(img_grass, 519, 355)
+    image(img_grassCropped, 50, 450)
+    image(img_grassCropped, 519, 450)
+    image(img_grassCropped2, 989, 50)
+    image(img_grassCropped2, 989, 350)
+    image(img_grassCropped3, 989, 655)
     image(img_door, 510, 690)
-    img_door.resize(160, 50)
+    image(img_tree, 220, 150)
+    image(img_tree, 645, 100)
+    image(img_berry, 95,450)
     fill(255)
     rect(x, y2, 60, 60)    
 
