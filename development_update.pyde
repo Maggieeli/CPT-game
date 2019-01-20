@@ -4,6 +4,7 @@ global screen
 global obstacles
 obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 180], [110, 320, 300, 100], [940, 545, 5, 200]]
 outdoor_obstacles = [[220, 150, 256, 256], [95, 450, 198, 170], [645, 100, 256, 256], [835, 435, 100, 180]]
+upstairs_obstacles= []
 x = 600
 y = 600
 y2 = 610
@@ -24,7 +25,6 @@ def setup():
     global img_grassCropped
     global img_grassCropped2
     global img_grassCropped3
-    global mono
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -41,7 +41,6 @@ def setup():
     img_grassCropped = loadImage("grassCropped.png")
     img_grassCropped2 = loadImage("grassCropped2.png")
     img_grassCropped3 = loadImage("grassCropped3.png") 
-    mono = loadFont("LucidaSans-Typewriter-48.vlw")
 
 def draw():
     global screen   
@@ -61,6 +60,9 @@ def draw():
         outdoor_scene()
         
     if screen == 3:
+        upstairs()
+    
+    if screen == 4:
         background(0)
         fill(255)
         text("I can only live where there is light, but I die if the light shines on me. What I am I?", 50, 50)
@@ -70,11 +72,11 @@ def draw():
         if keyPressed:
             if (key == 'w'):
                 screen = 2
-                
-    if screen == 4:
+
+              
+    if screen == 5:
         background(0, 0, 205)
         textSize(30)
-        textFont(mono)
         text("You check the funiture for pieces of a riddle,", 30, 50)
         text("once you obtain the anwser you must input the answer in to the treasure chest to win", 30, 90)
         text("answer in to the treasure chest to win", 30, 130)
@@ -83,36 +85,17 @@ def draw():
         if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
             and mousePressed):
             screen = 0
-              
-    if screen == 5:
+
+    if screen == 6:
         background(0)
         textSize(50)
         text("Input Code Here", 500, 550)
         text("back", 50, 50)
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
-            and mousePressed):
+        and mousePressed):
             screen = 1
-        '''
-        a = ""
-        guess = ""
-        answer = str("shadow")
-        while guess != answer:
-            if keyPressed:
-                a = key
-            guess += a
-        if guess == answer:
-            screen = 7
-        '''
-        
-    if screen == 6:
-        background(0)
-        character_movement()
-        bedroom_graphics()
-        #bedroom_screen_change()
-        display_location()
-        if keyPressed:
-            if key == 'e':
-                screen = 1
+    
+    
     if screen == 7:
         background(0)
         textSize(50)
@@ -220,15 +203,12 @@ def room_screen_change():
             if (key == 'x'):
                 screen = 5
     #upstairs
-    if (keyPressed):
-        if (key == 'j'):
-            screen += 1
     if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
         textSize(15)
         text("press i to go upstairs", 770, 600)
         if keyPressed:
             if (key == "i"):
-                screen = 6
+                screen = 3
             
 def display_location():
     global x
@@ -364,8 +344,8 @@ def outdoor_pc(playerx, playery2):
     
     player_x1 = x
     player_x2 = x + 60
-    player_y1 = y
-    player_y2 = y + 60
+    player_y1 = y2
+    player_y2 = y2 + 60
     
     
     
@@ -417,3 +397,75 @@ def outdoor_movement():
             x += 5
             if outdoor_pc(x,y2) == True:
                 x -= 5
+                
+def upstairs():
+    background(0)
+    upstairs_movement()
+    bedroom_graphics()
+    bedroom_screen_change()
+    display_location()
+    
+def bedroom_screen_change():
+    if keyPressed:
+        if key == 'e':
+            screen = 1
+            
+def upstairs_pc(playerx, playery):
+    global obstacles
+    
+    player_x1 = x
+    player_x2 = x + 60
+    player_y1 = y
+    player_y2 = y + 60
+    
+    
+    
+    for upstairs in upstairs_obstacles:
+        x_coll = False
+        y_coll = False
+        
+        obstical_x1 = upstairs[0]
+        obstical_y1 = upstairs[1]
+        obstical_x2 = upstairs[0] + upstairs[2]
+        obstical_y2 = upstairs[1] + upstairs[3]
+        
+
+        noFill()
+        stroke(0, 255, 0)
+        rect(*upstairs)
+        
+        if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
+            x_coll = True
+            
+        if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
+            y_coll = True
+        
+        if x_coll is True and y_coll is True:
+            return True
+        
+    return False
+            
+def upstairs_movement():
+    global x, y
+
+    if keyPressed and key == CODED:
+        if keyCode == UP and y >= 50:
+            y -= 5
+            if upstairs_pc(x,y) == True:
+                y += 5
+        
+        if (keyCode == DOWN and y <= 690):
+            y += 5
+            if upstairs_pc(x,y) == True:
+                y -= 5 
+
+        if (keyCode == LEFT and x >= 50):
+            x -= 5
+            if upstairs_pc(x,y) == True:
+                x += 5
+
+        if (keyCode == RIGHT and x <= 1090):
+            x += 5
+            if upstairs_pc(x,y) == True:
+                x -= 5
+    
