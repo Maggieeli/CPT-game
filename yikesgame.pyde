@@ -235,9 +235,9 @@ def room_screen_change():
     global x
     global y
     global screen
-    if (x >= 510 and x <= 610 and y >= 45 and y <= 100):
+    if (x >= 505 and x <= 670 and y >= 45 and y <= 65):
         textSize(15)
-        text("press i to go outside", 520, 150)
+        text("press i to go outside", 520, 100)
         if keyPressed:
             if (key == "i"):
                 screen = 2
@@ -417,9 +417,9 @@ def outdoor_screenchange():
             if (key == 'x'):
                 screen = 20
     #going inside
-    if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
+    if (x >= 505 and x <= 685 and y2 >= 660 and y2 <= 700):
         textSize(15)
-        text("press O to go inside", 510, 650)
+        text("press O to go inside", 510, 675)
         if (keyPressed):
             if (key == 'o'):
                 screen = 1
@@ -436,7 +436,7 @@ def outdoor_graphics():
     image(img_grassCropped2, 989, 50)
     image(img_grassCropped2, 989, 350)
     image(img_grassCropped3, 989, 655)
-    image(img_door, 510, 690)
+    image(img_door, 510, 735)
     image(img_tree, 170, 110)
     image(img_tree, 800, 120)
     image(img_berry, 230, 475)
