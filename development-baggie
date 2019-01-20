@@ -11,19 +11,21 @@ def setup():
     global img_floor
     global img_door
     global img_croppedfloor
-    global img_grass
+    global img_couch
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
     img_door = loadImage("door.png")
     img_croppedfloor = loadImage("FloorPixelCropped.png")
     img_grass = loadImage("grass.png")
+    img_couch =loadImage("couch.png")
 
 def draw():
     global screen
     global img_floor
     global img_door
-    global img_grass
+    global img_croppedfloor
+    global img_couch
     if screen == 0:
         background(0, 0, 205)
         fill(255)
@@ -33,7 +35,7 @@ def draw():
         background(0)
         character_movement()
         indoor_graphics()
-        screen_change()
+        indoor_screen_change()
         display_location()
 
     if screen == 2:
@@ -75,7 +77,6 @@ def draw():
             screen = 1
         
 def indoor_graphics():
-    rect(50, 50, 1100, 700)
     image(img_floor, 50, 50)
     image(img_floor, 50, 145)
     image(img_floor, 50, 240)
@@ -92,7 +93,7 @@ def indoor_graphics():
     image(img_floor, 355, 525)
     image(img_croppedfloor, 780, 620)
     image(img_floor, 355, 655)
-    img_door.resize(160, 50)
+    image(img_couch, 50, 50)
     #display cabinet
     rect(*obstacles[0])
     #couch
@@ -105,14 +106,14 @@ def indoor_graphics():
     rect(x, y, 60, 60)
     
     
-def screen_change():
+def indoor_screen_change():
     global x
     global y
     global screen
     if (x >= 510 and x <= 610 and y >= 48 and
     y <= 90):
         textSize(15)
-        text("press i to go outside", 510, 110)
+        text("press i to go outside", 520, 150)
         if keyPressed:
             if (key == "i"):
                 screen = 2
@@ -187,6 +188,7 @@ def point_collide(playerx, playery):
         obstical_x2 = furniture[0] + furniture[2]
         obstical_y2 = furniture[1] + furniture[3]
         
+
         noFill()
         stroke(0, 255, 0)
         rect(*furniture)
