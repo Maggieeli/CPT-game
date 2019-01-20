@@ -3,9 +3,10 @@ global y
 global screen
 global obstacles
 obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 180], [110, 320, 300, 100], [940, 545, 5, 200]]
+outdoor_obstacles = [[220, 150, 256, 256], [95, 450, 198, 170], [645, 100, 256, 256], [835, 435, 100, 180]]
 x = 600
 y = 600
-y2 = 609
+y2 = 610
 screen = 0
 
 def setup():
@@ -13,24 +14,33 @@ def setup():
     global img_door
     global img_croppedfloor
     global img_couch
-    global img_grass
     global img_chest
     global img_desk
     global img_carpet
     global img_stairs
+    global img_grass
+    global img_tree
+    global img_berry
+    global img_grassCropped
+    global img_grassCropped2
+    global img_grassCropped3
     global mono
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
     img_door = loadImage("door.png")
     img_croppedfloor = loadImage("FloorPixelCropped.png")
-    img_grass = loadImage("grass.png")
     img_couch =loadImage("couch.png")
-    img_grass = loadImage("grass.png")
     img_chest = loadImage("chest.png")
     img_desk = loadImage("desk.png")
     img_carpet = loadImage("carpet.png")
     img_stairs = loadImage("stairs.png")
+    img_grass = loadImage("grass.png")
+    img_tree = loadImage("tree.png")
+    img_berry = loadImage("berry.png")
+    img_grassCropped = loadImage("grassCropped.png")
+    img_grassCropped2 = loadImage("grassCropped2.png")
+    img_grassCropped3 = loadImage("grassCropped3.png") 
     mono = loadFont("LucidaSans-Typewriter-48.vlw")
 
 def draw():
@@ -43,12 +53,12 @@ def draw():
     if screen == 1:
         background(0)
         character_movement()
-        living_room_graphics()
-        living_room_screen_change()
+        room_graphics()
+        room_screen_change()
         display_location()
 
     if screen == 2:
-        screen2()
+        outdoor_scene()
         
     if screen == 3:
         background(0)
@@ -109,7 +119,7 @@ def draw():
         text("WINNER, WINNER!", 500, 550)
             
         
-def living_room_graphics():
+def room_graphics():
     global obstacles
     image(img_floor, 50, 50)
     image(img_floor, 50, 145)
@@ -170,7 +180,7 @@ def bedroom_graphics():
     fill(255)
     rect(x, y, 60, 60)
     
-def living_room_screen_change():
+def room_screen_change():
     global x
     global y
     global screen
@@ -279,7 +289,6 @@ def point_collide(playerx, playery):
         rect(*furniture)
         
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
-
             x_coll = True
             
         if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
@@ -307,48 +316,104 @@ def main_menu():
 
         
         
-def screen2():
-    global y2
-    global screen
-    def outdoor_graphics():
-        background(135,206,250)
-        rect(50, 50, 1100, 700)
-        image(img_grass, 50, 50)
-        image(img_grass, 519, 50)
-        image(img_grass, 50, 450)
-        image(img_grass, 519, 450)
-        image(img_door, 510, 690)
-        fill(255)
-        rect(x, y2, 60, 60)
-    if (x >= 300 and x <= 900 and y2 >= 40 and y2 <= 600):
-        textSize(15)
-        text("press f to go inside", 500, 650)
-        if (keyPressed):
-            if (key == 'i'):
-                screen = 1
-    if keyPressed:
-        global x
-        global y2
-        if (key == CODED):
-            if (keyCode == UP and y2 > 50):
-                y2 -= 3
-            elif (keyCode == DOWN and y2 < 690):
-                y2 += 3
-            elif (keyCode == LEFT and x > 50):
-                x -= 3
-            elif (keyCode == RIGHT and x < 1090):
-                x += 3
-    def outdoor_screenchange():
-        global screen
-        if (keyPressed):
-            if (key == 'x'):
-                screen = 3
-    def display_location2():
-        global x
-        textSize(15)
-        text(str(x), 10, 20)
-        text(str(y2), 10, 40)
-    outdoor_screenchange()
-    display_location2()
+def outdoor_scene():
     outdoor_graphics()
     outdoor_screenchange()
+    outdoor_displaylocation()
+    outdoor_movement()
+    
+def outdoor_screenchange():
+    global screen
+    if (keyPressed):
+        if (key == 'x'):
+            screen = 3
+    if (x >= 510 and x <= 618 and y2 >= 633 and y2 <= 690):
+        textSize(15)
+        text("press O to go inside", 510, 650)
+        if (keyPressed):
+            if (key == 'o'):
+                screen = 1
+                
+def outdoor_graphics():
+    background(135,206,250)
+    rect(50, 50, 1100, 700)
+    image(img_grass, 50, 50)
+    image(img_grass, 519, 50)
+    image(img_grass, 50, 355)
+    image(img_grass, 519, 355)
+    image(img_grassCropped, 50, 450)
+    image(img_grassCropped, 519, 450)
+    image(img_grassCropped2, 989, 50)
+    image(img_grassCropped2, 989, 350)
+    image(img_grassCropped3, 989, 655)
+    image(img_door, 510, 690)
+    image(img_tree, 220, 150)
+    image(img_tree, 645, 100)
+    image(img_berry, 95,450)
+    fill(255)
+    rect(x, y2, 60, 60)    
+
+def outdoor_displaylocation():
+    global x
+    textSize(15)
+    text(str(x), 10, 20)
+    text(str(y2), 10, 40)
+    
+def outdoor_pc(playerx, playery2):
+    global outdoor_obstacles
+    
+    player_x1 = x
+    player_x2 = x + 60
+    player_y1 = y
+    player_y2 = y + 60
+    
+    
+    
+    for nature in outdoor_obstacles:
+        x_coll = False
+        y_coll = False
+        
+        obstical_x1 = nature[0]
+        obstical_y1 = nature[1]
+        obstical_x2 = nature[0] + nature[2]
+        obstical_y2 = nature[1] + nature[3]
+        
+
+        noFill()
+        stroke(0, 255, 0)
+        rect(*nature)
+        
+        if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
+            x_coll = True
+            
+        if (player_y2 >= obstical_y1) and (player_y1 <= obstical_y2):
+            y_coll = True
+        
+        if x_coll == True and y_coll == True:
+            return True
+        
+    return False    
+
+def outdoor_movement():
+    global x, y2
+    
+    if keyPressed and key == CODED:
+        if keyCode == UP and y2 >= 50:
+            y2 -= 5
+            if outdoor_pc(x,y2) == True:
+                y2 += 5
+        
+        if (keyCode == DOWN and y2 <= 690):
+            y2 += 5
+            if outdoor_pc(x,y2) == True:
+                y2 -= 5 
+
+        if (keyCode == LEFT and x >= 50):
+            x -= 5
+            if outdoor_pc(x,y2) == True:
+                x += 5
+
+        if (keyCode == RIGHT and x <= 1090):
+            x += 5
+            if outdoor_pc(x,y2) == True:
+                x -= 5
