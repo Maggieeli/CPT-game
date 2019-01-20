@@ -98,19 +98,14 @@ def draw():
         background(0)
         textSize(50)
         text("back", 50, 50)
-        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
-            and mousePressed):
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150 and mousePressed):
             screen = 1
-        answer = "shadow"
-        guess = ""
-
-        while guess != answer:
-            if keyPressed:
-                guess += key
-            elif guess == answer:
-                screen = 7
-            if key == ESC:
-                guess = ""
+        guess = ''
+        guess += key 
+        if guess == answer:
+            screen = 7
+        else:
+            continue
 
     
     if screen == 7:
@@ -375,3 +370,8 @@ def outdoor_graphics():
     rect(x, y2, 60, 60)    
 
 
+
+            
+            
+    
+        
