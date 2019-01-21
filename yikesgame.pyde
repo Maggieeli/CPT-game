@@ -3,10 +3,10 @@ global screen
 global obstacles
 timeElapsed = None
 room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], [110, 320, 280, 90], [940, 545, 5, 200]]
+outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
+upstairs_obstacles = [[50, 285, 290, 200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116] ]
 x = 650
 y = 650
-outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
-upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116] ]
 y2 = 610
 screen = 0
 
@@ -21,8 +21,6 @@ def setup():
     global img_bed, img_bookshelf, img_flowerpot, img_bedside
     #image for winning
     global img_winner
-    
-     
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -58,12 +56,12 @@ def draw():
     noFill()
     #character
     rect(x, y + 80, 60, 60)
-    
+    #main menu
     if screen == 0:
         background(255,165,0)
         fill(255)
         main_menu()
-    
+    #living room
     if screen == 1:
         background(0)
         character_movement(x, y, room_obstacles)
@@ -73,14 +71,14 @@ def draw():
         character_animation(x, y)
         if keyPressed and key == "e":
             screen = 6
-
+    #outside
     if screen == 2:
         character_movement(x, y2, outdoor_obstacles)
         outdoor_graphics()
         outdoor_screenchange()
         display_location(x, y2)
         character_animation(x, y2)
-        
+    #bedroom
     if screen == 3:
         background(0)
         character_movement(x, y, upstairs_obstacles)
@@ -88,20 +86,7 @@ def draw():
         display_location(x,y)
         bedroom_screenchange()
         character_animation(x, y)
-        
-
-    if screen == 4:
-        background(0)
-        fill(255)
-        text("I can only live where there is light, but I die if the light shines on me. What am I?", 50, 50)
-
-        if keyPressed:
-            if (key =='q'):
-                screen = 1
-        if keyPressed:
-            if (key == 'w'):
-                screen = 2
-                
+    #how to play
     if screen == 5:
         background(255,165,0)
         textSize(30)
@@ -113,7 +98,7 @@ def draw():
         if (mouseX >= 1000 and mouseX <= 1050 and mouseY >= 590 and mouseY <= 615 
             and mousePressed):
             screen = 0
-              
+    #opened chest     
     if screen == 6:
         background(75, 0, 130)
         textSize(40)
@@ -139,8 +124,7 @@ def draw():
         if (mouseX >= 650 and mouseX <= 850 and mouseY >= 600 and mouseY <= 800
         and mousePressed):
             screen = 10
-    
-
+    #won game
     if screen == 7:
         import time
         global timeElapsed
@@ -153,7 +137,7 @@ def draw():
         fill(255)
         if millis() > timeElapsed + 4000:
             screen = 0
-
+    #pre-game
     if screen == 8:
         import time
         global timeElapsed
@@ -178,8 +162,7 @@ def draw():
         if millis() > timeElapsed + 8000:
             timeElapsed = None
             screen = 1
-            
-            
+    #lost game
     if screen == 10:
         import time
         global timeElapsed
@@ -192,7 +175,7 @@ def draw():
         fill(255)
         if millis() > timeElapsed + 3000:
             screen = 1
-            
+    #piece of riddle 
     if screen == 11:
         background(0, 0, 205)
         textSize(50)
@@ -201,7 +184,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 1
-            
+    #piece of riddle     
     if screen == 12:
         background(150, 0, 0)
         textSize(50)
@@ -210,7 +193,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 1
-            
+    #piece of riddle       
     if screen == 13:
         background(0, 190, 0)
         textSize(50)
@@ -219,7 +202,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 1
-            
+    #piece of riddle         
     if screen == 14:
         background(0)
         textSize(50)
@@ -228,7 +211,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 1
-            
+    #piece of riddle         
     if screen == 15:
         background(178,34,34)
         textSize(50)
@@ -237,7 +220,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 3
-            
+    #piece of riddle         
     if screen == 16:
         background(221,160,221)
         textSize(50)
@@ -246,7 +229,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 3
-   
+   #piece of riddle 
     if screen == 17:
         background(135,206,250)
         textSize(50)
@@ -255,7 +238,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 2
-    
+    #piece of riddle 
     if screen == 18:
         background(212,175,55)
         textSize(50)
@@ -264,7 +247,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 2
-            
+    #piece of riddle         
     if screen == 19:
         background(230,230,250)
         textSize(50)
@@ -275,7 +258,7 @@ def draw():
         if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
         and mousePressed):
             screen = 2
-            
+    #piece of riddle         
     if screen == 20:
         background(218,165,32)
         textSize(50)
@@ -322,7 +305,6 @@ def room_graphics():
     noFill()
     #character
     rect(x, y, 60, 0)
-
     
 def room_screenchange():
     global x
@@ -382,8 +364,6 @@ def display_location(x, y):
     textSize(15)
     text(str(x), 10, 20)
     text(str(y), 10, 40)
-
-
         
 def character_movement(playerx, playery, obstacles_ar):
     global x
@@ -425,8 +405,6 @@ def character_movement(playerx, playery, obstacles_ar):
             print("right")
             if point_collide(playerx, playery, obstacles_ar) == True:
                 x -= 5
-    
-
                 
 def character_animation(x , y):
     if keyCode == LEFT:
@@ -445,13 +423,11 @@ def point_collide(playerx, playery, obstacles_ar):
     
     if screen == 2:
         y = y2
-    
 
     player_x1 = x
     player_x2 = x + 60
     player_y1 = y
     player_y2 = y + 60
-
 
     for furniture in obstacles_ar:
 
@@ -462,8 +438,6 @@ def point_collide(playerx, playery, obstacles_ar):
         obstical_y1 = furniture[1]
         obstical_x2 = furniture[0] + furniture[2]
         obstical_y2 = furniture[1] + furniture[3]
-        
-
         
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
             x_coll = True
@@ -535,7 +509,6 @@ def outdoor_screenchange():
                 if screen == 1:
                     y = 100
 
-
 def outdoor_graphics():
     background(135,206,250)
     rect(50, 50, 1100, 700)
@@ -553,7 +526,6 @@ def outdoor_graphics():
     image(img_tree, 800, 120)
     image(img_berry, 230, 475)
     image(img_picnic, 785, 510)
-                
 
 def bedroom_screenchange():
     global screen
@@ -602,4 +574,3 @@ def bedroom_graphics():
     image(img_stairs, 945, 640)
     image(img_bedside, 65, 615)
     image(img_flowerpot, 80, 70)
-    
