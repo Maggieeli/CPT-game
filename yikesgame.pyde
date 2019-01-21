@@ -67,7 +67,7 @@ def draw():
         room_graphics()
         room_screenchange()
         display_location(x, y)
-        character_animation()
+        character_animation(x, y)
         if keyPressed and key == "e":
             screen = 6
 
@@ -84,7 +84,7 @@ def draw():
         bedroom_graphics()
         display_location(x,y)
         bedroom_screenchange()
-        character_animation()
+        character_animation(x, y)
         
 
 
@@ -298,9 +298,9 @@ def room_screenchange():
         text("press i to go upstairs", 770, 600)
         if keyPressed:
             if (key == "i"):
-              screen = 3   
-def display_location():
-    global x, y
+              screen = 3 
+                
+def display_location(x, y):
     textSize(15)
     text(str(x), 10, 20)
     text(str(y), 10, 40)
@@ -349,7 +349,7 @@ def character_movement(playerx, playery, obstacles_ar):
     
 
                 
-def character_animation():
+def character_animation(x , y2):
             if keyCode == LEFT:
                 image(img_ted_left, x, y)
             elif keyCode == DOWN:
@@ -456,31 +456,11 @@ def outdoor_screenchange():
             if (key == 'o'):
                 screen = 1
                 
-def outdoor_graphics():
-    background(135,206,250)
-    rect(50, 50, 1100, 700)
-    image(img_grass, 50, 50)
-    image(img_grass, 519, 50)
-    image(img_grass, 50, 355)
-    image(img_grass, 519, 355)
-    image(img_grassCropped, 50, 450)
-    image(img_grassCropped, 519, 450)
-    image(img_grassCropped2, 989, 50)
-    image(img_grassCropped2, 989, 350)
-    image(img_grassCropped3, 989, 655)
-    image(img_door, 510, 690)
-    image(img_tree, 220, 150)
-    image(img_tree, 800, 120)
-    image(img_berry, 95,450)
-    image(img_berry, 230, 475)
-    image(img_picnic, 785, 510)
-    fill(255)
-    rect(x, y2, 60, 60)
-    def bedroomscreen_change():
+
+def bedroom_screenchange():
     if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
         textSize(15)
         text("press r to go downstairs", 770, 600)
-        #notworking!! >:(
         if (keyPressed):
             if (key == "r"):
                 screen = 1 
@@ -505,4 +485,3 @@ def bedroom_graphics():
     image(img_floor, 50, 655)
     image(img_bed, 45, 285)
     image(img_bookshelf, 300, 50)
-
