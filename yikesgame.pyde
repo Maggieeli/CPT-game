@@ -6,7 +6,7 @@ room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], 
 x = 650
 y = 650
 outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
-upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 150]]
+upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116] ]
 y2 = 610
 screen = 0
 
@@ -18,10 +18,9 @@ def setup():
     #characters
     global img_ted_down, img_ted_left, img_ted_down, img_ted_right, img_ted_up
     #all images for bedroom
-    global img_bed, img_bookshelf
-
-  
-   
+    global img_bed, img_bookshelf, img_flowerpot, img_bedside
+    
+     
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -46,7 +45,8 @@ def setup():
     img_ted_up = loadImage("tedUp.png")
     img_bed = loadImage("bed.png")
     img_bookshelf = loadImage("bookshelf.png")
-
+    img_flowerpot = loadImage("flowerpot.png")
+    img_bedside = loadImage("bedside.png")
 
 def draw():
     global screen
@@ -67,7 +67,7 @@ def draw():
         room_graphics()
         room_screenchange()
         display_location(x, y)
-        character_animation()
+        character_animation(x, y)
         if keyPressed and key == "e":
             screen = 6
 
@@ -84,11 +84,9 @@ def draw():
         bedroom_graphics()
         display_location(x,y)
         bedroom_screenchange()
-        character_animation()
+        character_animation(x, y)
         
 
-
-        
     if screen == 4:
         background(0)
         fill(255)
@@ -127,7 +125,6 @@ def draw():
         #else:
             #continue
 
-    
 
     if screen == 7:
         background(0)
@@ -159,6 +156,60 @@ def draw():
         if millis() > timeElapsed + 8000:
             timeElapsed = None
             screen = 1
+            
+    if screen == 11:
+        background(0)
+        textSize(50)
+        text("me. What", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 12:
+        background(0)
+        textSize(50)
+        text("shines on", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 13:
+        background(0)
+        textSize(50)
+        text("but I", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 14:
+        background(0)
+        textSize(50)
+        text("where there", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 15:
+        background(0)
+        textSize(50)
+        text("die if", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 3
+            
+    if screen == 16:
+        background(0)
+        textSize(50)
+        text("only live", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 3
    
     if screen == 17:
         background(0)
@@ -227,38 +278,19 @@ def room_graphics():
     image(img_stairs, 945, 640)
     image(img_table, 110, 320)
     noFill()
+    noStroke()
     for furniture in room_obstacles:
         rect(*furniture)
     noFill()
     #character
     rect(x, y, 60, 0)
 
-def bedroom_graphics():
-    global obstacles
-    image(img_floor, 50, 50)
-    image(img_floor, 50, 145)
-    image(img_floor, 50, 240)
-    image(img_floor, 50, 335)
-    image(img_floor, 50, 430)
-    image(img_floor, 50, 525)
-    image(img_floor, 50, 620)
-    image(img_croppedfloor, 780, 50)
-    image(img_floor, 355, 145)
-    image(img_croppedfloor, 780, 240)
-    image(img_floor, 355, 335)
-    image(img_croppedfloor, 780, 430)
-    image(img_floor, 355, 525)
-    image(img_croppedfloor, 780, 620)
-    image(img_floor, 355, 655)
-    image(img_floor, 50, 655)
-    fill(255)
-    rect(x, y, 60, 60)
     
 def room_screenchange():
     global x
     global y
     global screen
-    if (x >= 510 and x <= 610 and y >= 45 and y <= 100):
+    if (x >= 505 and x <= 670 and y >= 45 and y <= 65):
         textSize(15)
         text("press i to go outside", 520, 150)
         if keyPressed:
@@ -267,10 +299,10 @@ def room_screenchange():
     #stairs
     if (x >= 800 and x <= 900 and y >= 600 and y <= 750):
         textSize(15)
-        text("press x to inspect", 760, 550)
+        text("press x to inspect the stairs", 760, 550)
         if keyPressed:
             if (key == "x"):
-                screen = 6
+                screen = 11
     #chest
     if (x >= 900 and x <= 1050 and y >= 50 and y <= 280):
         textSize(15)
@@ -281,26 +313,34 @@ def room_screenchange():
     #couch
     if (x >= 100 and x <= 350 and y >= 50 and y <= 280):
         textSize(15)
-        text("press x to inspect", 200, 250)
+        text("press x to inspect the couch", 200, 250)
         if (keyPressed):
             if (key == 'x'):
-                screen = 6
+                screen = 12
     #goldfish
     if (x >= 100 and x <= 350 and y >= 500 and y <= 1050):
         textSize(15)
-        text("press x to inspect", 300, 550)
+        text("press x to inspect the goldfish", 300, 550)
         if (keyPressed):
             if (key == 'x'):
-                screen = 6
+                screen = 13
+                
+    #table 
+    if (x >= 45 and x <= 395 and y >= 305 and y <= 420):
+        textSize(15)
+        text("press x to inspect the table", 400, 340)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 14 
     #upstairs
-    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
         textSize(15)
         text("press i to go upstairs", 770, 600)
         if keyPressed:
             if (key == "i"):
-              screen = 3   
-def display_location():
-    global x, y
+              screen = 3 
+                
+def display_location(x, y):
     textSize(15)
     text(str(x), 10, 20)
     text(str(y), 10, 40)
@@ -327,14 +367,15 @@ def character_movement(playerx, playery, obstacles_ar):
             if keyCode == UP and y2 >= 50:
                 y2 -= 5
                 print("up")
-            if point_collide(playerx, playery, obstacles_ar) == True:
-                y2 += 5
-            if (keyCode == DOWN and y <= 690):
+                if point_collide(playerx, playery, outdoor_obstacles) == True:
+                    y2 += 5
+                    print("colliding")
+            if (keyCode == DOWN and y2 <= 690):
                 y2 += 5
                 print("down")
-            if point_collide(playerx, playery, obstacles_ar) == True:
-                y2 -= 5
-
+                if point_collide(playerx, playery, outdoor_obstacles) == True:
+                    y2 -= 5
+                    print("colliding")
         if (keyCode == LEFT and x >= 50):
             x -= 5
             print("left")
@@ -349,27 +390,30 @@ def character_movement(playerx, playery, obstacles_ar):
     
 
                 
-def character_animation():
-            if keyCode == LEFT:
-                image(img_ted_left, x, y)
-            elif keyCode == DOWN:
-                image(img_ted_down, x, y)
-            elif keyCode == UP:
-                image(img_ted_up, x, y)
-            elif keyCode == RIGHT:
-                image(img_ted_right, x, y)
-            else:
-                image(img_ted_down, x, y)
-    
+def character_animation(x , y):
+    if keyCode == LEFT:
+        image(img_ted_left, x, y)
+    elif keyCode == DOWN:
+        image(img_ted_down, x, y)
+    elif keyCode == UP:
+        image(img_ted_up, x, y)
+    elif keyCode == RIGHT:
+        image(img_ted_right, x, y)
+    else:
+        image(img_ted_down, x, y)
+        
 def point_collide(playerx, playery, obstacles_ar):
     global x, y, y2
-        
+    
+    if screen == 2:
+        y = y2
+    
+
     player_x1 = x
     player_x2 = x + 60
     player_y1 = y
     player_y2 = y + 60
-    
-    
+
 
     for furniture in obstacles_ar:
 
@@ -382,9 +426,6 @@ def point_collide(playerx, playery, obstacles_ar):
         obstical_y2 = furniture[1] + furniture[3]
         
 
-        noFill()
-        stroke(0, 255, 0)
-        rect(*furniture)
         
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
             x_coll = True
@@ -410,13 +451,14 @@ def main_menu():
         screen = 1
     if (mouseX >= 500 and mouseX <= 775 and mouseY >= 575 and mouseY <=615
         and mousePressed):
-        screen = 4
+        screen = 5
 
         
         
     
 def outdoor_screenchange():
     global screen
+    global y
     # tree 
     if (x >= 105 and x <= 430 and y2 >= 45 and y2 <= 375):
         textSize(15)
@@ -455,7 +497,9 @@ def outdoor_screenchange():
         if (keyPressed):
             if (key == 'o'):
                 screen = 1
-                
+                if screen == 1:
+                    y = 100
+
 def outdoor_graphics():
     background(135,206,250)
     rect(50, 50, 1100, 700)
@@ -468,22 +512,35 @@ def outdoor_graphics():
     image(img_grassCropped2, 989, 50)
     image(img_grassCropped2, 989, 350)
     image(img_grassCropped3, 989, 655)
-    image(img_door, 510, 690)
-    image(img_tree, 220, 150)
+    image(img_door, 510, 735)
+    image(img_tree, 170, 110)
     image(img_tree, 800, 120)
-    image(img_berry, 95,450)
     image(img_berry, 230, 475)
     image(img_picnic, 785, 510)
-    fill(255)
-    rect(x, y2, 60, 60)
-    def bedroomscreen_change():
-    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+                
+
+def bedroom_screenchange():
+    global screen
+    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
         textSize(15)
         text("press r to go downstairs", 770, 600)
-        #notworking!! >:(
         if (keyPressed):
             if (key == "r"):
                 screen = 1 
+    # book shelf            
+    if (x >= 235 and x <= 815 and y >= 45 and y <= 205):
+        textSize(15)
+        text("press x to inspect the book shelf", 500, 200)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 15
+    # bed            
+    if (x >= 45 and x <= 345 and y >= 220 and y <= 490):
+        textSize(15)
+        text("press x to inspect the bed", 345, 390)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 16
       
 def bedroom_graphics():
     global obstacles
@@ -503,6 +560,11 @@ def bedroom_graphics():
     image(img_croppedfloor, 780, 620)
     image(img_floor, 355, 655)
     image(img_floor, 50, 655)
+    image(img_carpet, 200, 100)
     image(img_bed, 45, 285)
     image(img_bookshelf, 300, 50)
-
+    image(img_stairs, 945, 640)
+    image(img_bedside, 65, 615)
+    image(img_flowerpot, 80, 70)
+    
+    
