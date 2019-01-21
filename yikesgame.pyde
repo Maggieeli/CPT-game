@@ -3,10 +3,10 @@ global screen
 global obstacles
 timeElapsed = None
 room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], [110, 320, 280, 90], [940, 545, 5, 200]]
-outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
-upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 150]]
 x = 650
 y = 650
+outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
+upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116] ]
 y2 = 610
 screen = 0
 
@@ -18,10 +18,9 @@ def setup():
     #characters
     global img_ted_down, img_ted_left, img_ted_down, img_ted_right, img_ted_up
     #all images for bedroom
-    global img_bed, img_bookshelf
-
-  
-   
+    global img_bed, img_bookshelf, img_flowerpot, img_bedside
+    
+     
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -46,7 +45,8 @@ def setup():
     img_ted_up = loadImage("tedUp.png")
     img_bed = loadImage("bed.png")
     img_bookshelf = loadImage("bookshelf.png")
-
+    img_flowerpot = loadImage("flowerpot.png")
+    img_bedside = loadImage("bedside.png")
 
 def draw():
     global screen
@@ -125,7 +125,6 @@ def draw():
         #else:
             #continue
 
-    
 
     if screen == 7:
         background(0)
@@ -157,6 +156,60 @@ def draw():
         if millis() > timeElapsed + 8000:
             timeElapsed = None
             screen = 1
+            
+    if screen == 11:
+        background(0)
+        textSize(50)
+        text("me. What", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 12:
+        background(0)
+        textSize(50)
+        text("shines on", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 13:
+        background(0)
+        textSize(50)
+        text("but I", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 14:
+        background(0)
+        textSize(50)
+        text("where there", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 1
+            
+    if screen == 15:
+        background(0)
+        textSize(50)
+        text("die if", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 3
+            
+    if screen == 16:
+        background(0)
+        textSize(50)
+        text("only live", 500, 550)
+        text("back", 50, 50)
+        if (mouseX >= 0 and mouseX <= 150 and mouseY >= 0 and mouseY <= 150
+        and mousePressed):
+            screen = 3
    
     if screen == 17:
         background(0)
@@ -246,10 +299,10 @@ def room_screenchange():
     #stairs
     if (x >= 800 and x <= 900 and y >= 600 and y <= 750):
         textSize(15)
-        text("press x to inspect", 760, 550)
+        text("press x to inspect the stairs", 760, 550)
         if keyPressed:
             if (key == "x"):
-                screen = 6
+                screen = 11
     #chest
     if (x >= 900 and x <= 1050 and y >= 50 and y <= 280):
         textSize(15)
@@ -260,19 +313,27 @@ def room_screenchange():
     #couch
     if (x >= 100 and x <= 350 and y >= 50 and y <= 280):
         textSize(15)
-        text("press x to inspect", 200, 250)
+        text("press x to inspect the couch", 200, 250)
         if (keyPressed):
             if (key == 'x'):
-                screen = 6
+                screen = 12
     #goldfish
     if (x >= 100 and x <= 350 and y >= 500 and y <= 1050):
         textSize(15)
-        text("press x to inspect", 300, 550)
+        text("press x to inspect the goldfish", 300, 550)
         if (keyPressed):
             if (key == 'x'):
-                screen = 6
+                screen = 13
+                
+    #table 
+    if (x >= 45 and x <= 395 and y >= 305 and y <= 420):
+        textSize(15)
+        text("press x to inspect the table", 400, 340)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 14 
     #upstairs
-    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
         textSize(15)
         text("press i to go upstairs", 770, 600)
         if keyPressed:
@@ -390,7 +451,7 @@ def main_menu():
         screen = 1
     if (mouseX >= 500 and mouseX <= 775 and mouseY >= 575 and mouseY <=615
         and mousePressed):
-        screen = 4
+        screen = 5
 
         
         
@@ -457,12 +518,26 @@ def outdoor_graphics():
 
 def bedroom_screenchange():
     global screen
-    if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
+    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
         textSize(15)
         text("press r to go downstairs", 770, 600)
         if (keyPressed):
             if (key == "r"):
-                screen = 1
+                screen = 1 
+    # book shelf            
+    if (x >= 235 and x <= 815 and y >= 45 and y <= 205):
+        textSize(15)
+        text("press x to inspect the book shelf", 500, 200)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 15
+    # bed            
+    if (x >= 45 and x <= 345 and y >= 220 and y <= 490):
+        textSize(15)
+        text("press x to inspect the bed", 345, 390)
+        if (keyPressed):
+            if (key == 'x'):
+                screen = 16
       
 def bedroom_graphics():
     global obstacles
@@ -482,5 +557,11 @@ def bedroom_graphics():
     image(img_croppedfloor, 780, 620)
     image(img_floor, 355, 655)
     image(img_floor, 50, 655)
+    image(img_carpet, 200, 100)
     image(img_bed, 45, 285)
     image(img_bookshelf, 300, 50)
+    image(img_stairs, 945, 640)
+    image(img_bedside, 65, 615)
+    image(img_flowerpot, 80, 70)
+    
+    
