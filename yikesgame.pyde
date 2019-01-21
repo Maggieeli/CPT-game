@@ -452,9 +452,6 @@ def main_menu():
     if (mouseX >= 500 and mouseX <= 775 and mouseY >= 575 and mouseY <=615
         and mousePressed):
         screen = 5
-
-        
-        
     
 def outdoor_screenchange():
     global screen
@@ -499,6 +496,7 @@ def outdoor_screenchange():
                 screen = 1
                 if screen == 1:
                     y = 100
+
 
 def outdoor_graphics():
     background(135,206,250)
