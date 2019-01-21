@@ -225,6 +225,7 @@ def room_graphics():
     image(img_stairs, 945, 640)
     image(img_table, 110, 320)
     noFill()
+    noStroke()
     for furniture in room_obstacles:
         rect(*furniture)
     noFill()
@@ -305,14 +306,15 @@ def character_movement(playerx, playery, obstacles_ar):
             if keyCode == UP and y2 >= 50:
                 y2 -= 5
                 print("up")
-            if point_collide(playerx, playery, obstacles_ar) == True:
-                y2 += 5
-            if (keyCode == DOWN and y <= 690):
+                if point_collide(playerx, playery, outdoor_obstacles) == True:
+                    y2 += 5
+                    print("colliding")
+            if (keyCode == DOWN and y2 <= 690):
                 y2 += 5
                 print("down")
-            if point_collide(playerx, playery, obstacles_ar) == True:
-                y2 -= 5
-
+                if point_collide(playerx, playery, outdoor_obstacles) == True:
+                    y2 -= 5
+                    print("colliding")
         if (keyCode == LEFT and x >= 50):
             x -= 5
             print("left")
@@ -341,7 +343,11 @@ def character_animation(x , y):
         
 def point_collide(playerx, playery, obstacles_ar):
     global x, y, y2
-        
+    
+    if screen == 2:
+        y = y2
+    
+
     player_x1 = x
     player_x2 = x + 60
     player_y1 = y
@@ -359,9 +365,6 @@ def point_collide(playerx, playery, obstacles_ar):
         obstical_y2 = furniture[1] + furniture[3]
         
 
-        noFill()
-        stroke(0, 255, 0)
-        rect(*furniture)
         
         if (player_x2 >= obstical_x1) and (player_x1 <= obstical_x2):
             x_coll = True
