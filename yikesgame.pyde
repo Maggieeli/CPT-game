@@ -5,7 +5,7 @@ global obstacles
 timeElapsed = None
 room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], [110, 320, 280, 90], [940, 545, 5, 200]]
 outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
-upstairs_obstacles = []
+upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 150]]
 x = 600
 y = 600
 y2 = 610
@@ -32,6 +32,8 @@ def setup():
     global img_ted_left
     global img_ted_right
     global img_ted_up
+    global img_bed
+    global img_bookshelf
     size(1200, 800)
     background(0)
     img_floor = loadImage("FloorPixel.png")
@@ -54,6 +56,9 @@ def setup():
     img_ted_left = loadImage("tedLeft.png")
     img_ted_right = loadImage("tedRight.png")
     img_ted_up = loadImage("tedUp.png")
+    img_bed = loadImage("bed.png")
+    img_bookshelf = loadImage("bookshelf.png")
+
 
 def draw():
     global screen
@@ -519,12 +524,15 @@ def outdoor_movement():
             x += 5
             if outdoor_pc(x,y2) == True:
                 x -= 5
+        
 def upstairs():
     background(0)
     upstairs_movement()
     bedroom_graphics()
     display_location()
     bedroom_screen_change()
+    character_animation()
+        
 
 def bedroom_screen_change():
     if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
@@ -553,9 +561,9 @@ def bedroom_graphics():
     image(img_croppedfloor, 780, 620)
     image(img_floor, 355, 655)
     image(img_floor, 50, 655)
-    noFill()
-    rect(x, y, 60, 60)
-    image(img_ted_down, x, y)
+    image(img_bed, 45, 285)
+    image(img_bookshelf, 300, 50)
+
     
 def upstairs_pc(playerx, playery):
     global upstairs_obstacles
