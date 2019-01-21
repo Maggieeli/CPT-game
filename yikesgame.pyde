@@ -49,13 +49,14 @@ def setup():
     img_bedside = loadImage("bedside.png")
     img_winner = loadImage("winner.png")
 
+
 def draw():
     global screen
     global x
     global y
     noFill()
     #character
-    rect(x, y + 80, 60, 60)
+    rect(x, y, 80, 80)
     #main menu
     if screen == 0:
         background(255,165,0)
@@ -298,6 +299,8 @@ def room_graphics():
     image(img_stairs, 945, 540)
     image(img_stairs, 945, 640)
     image(img_table, 110, 320)
+    fill(0)
+    rect(940, 540, 10, 230)
     noFill()
     noStroke()
     for furniture in room_obstacles:
@@ -319,7 +322,7 @@ def room_screenchange():
     #stairs
     if (x >= 800 and x <= 900 and y >= 600 and y <= 750):
         textSize(15)
-        text("press x to inspect the stairs", 760, 550)
+        text("press x to inspect the stairs", 760, 540)
         if keyPressed:
             if (key == "x"):
                 screen = 11
@@ -353,7 +356,7 @@ def room_screenchange():
             if (key == 'x'):
                 screen = 14 
     #upstairs
-    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
+    if (x >= 950 and x <= 1100 and y >= 620 and y <= 750):
         textSize(15)
         text("press i to go upstairs", 770, 600)
         if keyPressed:
@@ -373,36 +376,27 @@ def character_movement(playerx, playery, obstacles_ar):
     if keyPressed and key == CODED:
         if keyCode == UP and y >= 50:
             y -= 5
-            print("up")
             if point_collide(playerx, playery, obstacles_ar) == True:
                 y += 5
-        if (keyCode == DOWN and y <= 690):
+        if (keyCode == DOWN and y <= 650):
             y += 5
-            print("down")
             if point_collide(playerx, playery, obstacles_ar) == True:
                 y -= 5
         if screen == 2 and keyPressed and key == CODED:
             if keyCode == UP and y2 >= 50:
                 y2 -= 5
-                print("up")
                 if point_collide(playerx, playery, outdoor_obstacles) == True:
                     y2 += 5
-                    print("colliding")
-            if (keyCode == DOWN and y2 <= 690):
+            if (keyCode == DOWN and y2 <= 650):
                 y2 += 5
-                print("down")
                 if point_collide(playerx, playery, outdoor_obstacles) == True:
                     y2 -= 5
-                    print("colliding")
         if (keyCode == LEFT and x >= 50):
             x -= 5
-            print("left")
             if point_collide(playerx, playery, obstacles_ar) == True:
                 x += 5
-
         if (keyCode == RIGHT and x <= 1090):
             x += 5
-            print("right")
             if point_collide(playerx, playery, obstacles_ar) == True:
                 x -= 5
                 
@@ -423,7 +417,7 @@ def point_collide(playerx, playery, obstacles_ar):
     
     if screen == 2:
         y = y2
-
+        
     player_x1 = x
     player_x2 = x + 60
     player_y1 = y
@@ -500,7 +494,7 @@ def outdoor_screenchange():
             if (key == 'x'):
                 screen = 20
     #going inside
-    if (x >= 505 and x <= 685 and y2 >= 660 and y2 <= 700):
+    if (x >= 505 and x <= 685 and y2 >= 620 and y2 <= 700):
         textSize(15)
         text("press o to go inside", 510, 675)
         if (keyPressed):
@@ -529,7 +523,7 @@ def outdoor_graphics():
 
 def bedroom_screenchange():
     global screen
-    if (x >= 950 and x <= 1100 and y >= 680 and y <= 750):
+    if (x >= 950 and x <= 1100 and y >= 620 and y <= 750):
         textSize(15)
         text("press r to go downstairs", 770, 600)
         if (keyPressed):
@@ -538,6 +532,7 @@ def bedroom_screenchange():
     # book shelf            
     if (x >= 235 and x <= 815 and y >= 45 and y <= 205):
         textSize(15)
+        fill(255)
         text("press x to inspect the book shelf", 500, 200)
         if (keyPressed):
             if (key == 'x'):
