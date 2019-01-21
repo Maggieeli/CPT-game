@@ -3,10 +3,10 @@ global screen
 global obstacles
 timeElapsed = None
 room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], [110, 320, 280, 90], [940, 545, 5, 200]]
-x = 650
-y = 650
 outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
 upstairs_obstacles = [[50, 285, 290,200], [300, 50, 505, 150]]
+x = 650
+y = 650
 y2 = 610
 screen = 0
 
@@ -456,12 +456,13 @@ def outdoor_graphics():
                 
 
 def bedroom_screenchange():
+    global screen
     if (x >= 950 and x <= 1050 and y >= 680 and y <= 750):
         textSize(15)
         text("press r to go downstairs", 770, 600)
         if (keyPressed):
             if (key == "r"):
-                screen = 1 
+                screen = 1
       
 def bedroom_graphics():
     global obstacles
