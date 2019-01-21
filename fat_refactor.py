@@ -104,8 +104,8 @@ def draw():
         guess += key 
         if guess == answer:
             screen = 7
-        else:
-            continue
+        #else:
+            #continue
 
     
     if screen == 7:
@@ -257,10 +257,7 @@ def character_movement(playerx, playery, obstacles_ar):
     global x
     global y
     global y2
-    print(obstacles_ar)
-    print(x)
-    print(y)
-    print(point_collide(playerx, playery, obstacles_ar))
+
     if keyPressed and key == CODED:
         if keyCode == UP and y >= 50:
             y -= 5
@@ -271,7 +268,18 @@ def character_movement(playerx, playery, obstacles_ar):
             y += 5
             print("down")
             if point_collide(playerx, playery, obstacles_ar) == True:
-                y -= 5 
+                y -= 5
+        if screen == 2 and keyPressed and key == CODED:
+            if keyCode == UP and y2 >= 50:
+                y2 -= 5
+                print("up")
+            if point_collide(playerx, playery, obstacles_ar) == True:
+                y2 += 5
+            if (keyCode == DOWN and y <= 690):
+                y2 += 5
+                print("down")
+            if point_collide(playerx, playery, obstacles_ar) == True:
+                y2 -= 5
 
         if (keyCode == LEFT and x >= 50):
             x -= 5
@@ -373,5 +381,3 @@ def outdoor_graphics():
 
             
             
-    
-        
