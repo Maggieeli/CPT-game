@@ -10,6 +10,7 @@ y = 650
 y2 = 610
 screen = 0
 
+
 def setup():
     #all images for main room
     global img_floor, img_door, img_croppedfloor, img_couch, img_chest, img_desk, img_carpet, img_stairs, img_table
@@ -58,7 +59,7 @@ def draw():
     rect(x, y, 80, 80)
     #main menu
     if screen == 0:
-        background(255,165,0)
+        background(255, 165, 0)
         fill(255)
         main_menu()
     #living room
@@ -83,7 +84,7 @@ def draw():
         background(0)
         character_movement(x, y, upstairs_obstacles)
         bedroom_graphics()
-        display_location(x,y)
+        display_location(x, y)
         bedroom_screenchange()
         character_animation(x, y)
     #how to play
@@ -222,7 +223,7 @@ def draw():
             screen = 3
     #piece of riddle         
     if screen == 16:
-        background(221,160,221)
+        background(221, 160, 221)
         textSize(50)
         text("only live", 500, 550)
         text("back", 50, 50)
@@ -231,7 +232,7 @@ def draw():
             screen = 3
    #piece of riddle 
     if screen == 17:
-        background(135,206,250)
+        background(135, 206, 250)
         textSize(50)
         text("is light", 500, 550)
         text("back", 50, 50)
@@ -240,7 +241,7 @@ def draw():
             screen = 2
     #piece of riddle 
     if screen == 18:
-        background(212,175,55)
+        background(212, 175, 55)
         textSize(50)
         text("the light", 500, 550)
         text("back", 50, 50)
@@ -260,7 +261,7 @@ def draw():
             screen = 2
     #piece of riddle         
     if screen == 20:
-        background(218,165,32)
+        background(218, 165, 32)
         textSize(50)
         fill(0)
         text("am I?", 500, 550)
@@ -395,7 +396,7 @@ def character_movement(playerx, playery, obstacles_ar):
             if point_collide(playerx, playery, obstacles_ar) == True:
                 x -= 5
                 
-def character_animation(x , y):
+def character_animation(x, y):
     if keyCode == LEFT:
         image(img_ted_left, x, y)
     elif keyCode == DOWN:
@@ -571,5 +572,5 @@ def test_cases():
     assert x <= 1090, "Character out of range"
     assert screen < 21, "No such screen, check buttons for possible misnumbering."
     assert screen >= 0, "No such screen, check buttons for possible misnumbering."
-    
+
 #test_cases()
