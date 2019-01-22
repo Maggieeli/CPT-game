@@ -565,14 +565,10 @@ def bedroom_graphics():
     image(img_flowerpot, 80, 70)
     
 def test_cases():
-    assert keyPressed and key == UP and y -= 5, "Character isn't moving up, when up key is pressed."
-    assert keyPressed and key == DOWN and y += 5, "Character isn't moving down, when down key is pressed."
-    assert keyPressed and key == LEFT and x -= 5, "Character isn't moving left, when left key is pressed."
-    assert keyPressed and key == RIGHT and x += 5, "Character isn't moving right, when right key is pressed."
-    assert y > 50, "Character out of range"
-    assert y < 650, "Character out of range"
-    assert x > 50, "Character out of range"
-    assert x < 1090, "Character out of range"
+    assert y >= 50, "Character out of range"
+    assert y <= 650, "Character out of range"
+    assert x >= 50, "Character out of range"
+    assert x <= 1090, "Character out of range"
     assert screen < 21, "No such screen, check buttons for possible misnumbering."
     assert screen >= 0, "No such screen, check buttons for possible misnumbering."
     
