@@ -4,7 +4,7 @@ global obstacles
 timeElapsed = None
 room_obstacles = [[50, 50, 410, 195], [900, 50, 250, 165], [50, 580, 480, 170], [110, 320, 280, 90], [940, 545, 5, 200]]
 outdoor_obstacles = [[170, 110, 256, 256], [800, 120, 256, 256], [230, 475, 198, 170], [785, 510, 178, 126]]
-upstairs_obstacles = [[50, 285, 290, 200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116] ]
+upstairs_obstacles = [[50, 285, 290, 200], [300, 50, 505, 145], [65, 615, 180, 110], [80, 70, 73, 116]]
 x = 650
 y = 650
 y2 = 610
@@ -52,8 +52,7 @@ def setup():
 
 def draw():
     global screen
-    global x
-    global y
+    global x, y
     noFill()
     #character
     rect(x, y, 80, 80)
@@ -273,8 +272,7 @@ def draw():
         
 def room_graphics():
     global obstacles
-    global x
-    global y
+    global x, y
     image(img_floor, 50, 50)
     image(img_floor, 50, 145)
     image(img_floor, 50, 240)
@@ -310,8 +308,7 @@ def room_graphics():
     rect(x, y, 60, 0)
     
 def room_screenchange():
-    global x
-    global y
+    global x, y
     global screen
     if (x >= 505 and x <= 670 and y >= 45 and y <= 65):
         textSize(15)
@@ -369,9 +366,7 @@ def display_location(x, y):
     text(str(y), 10, 40)
         
 def character_movement(playerx, playery, obstacles_ar):
-    global x
-    global y
-    global y2
+    global x, y, y2
 
     if keyPressed and key == CODED:
         if keyCode == UP and y >= 50:
@@ -546,7 +541,6 @@ def bedroom_screenchange():
                 screen = 16
       
 def bedroom_graphics():
-    global obstacles
     image(img_floor, 50, 50)
     image(img_floor, 50, 145)
     image(img_floor, 50, 240)
@@ -569,3 +563,17 @@ def bedroom_graphics():
     image(img_stairs, 945, 640)
     image(img_bedside, 65, 615)
     image(img_flowerpot, 80, 70)
+    
+def test_cases():
+    assert keyPressed and key == UP and y -= 5, "Character isn't moving up, when up key is pressed."
+    assert keyPressed and key == DOWN and y += 5, "Character isn't moving down, when down key is pressed."
+    assert keyPressed and key == LEFT and x -= 5, "Character isn't moving left, when left key is pressed."
+    assert keyPressed and key == RIGHT and x += 5, "Character isn't moving right, when right key is pressed."
+    assert y > 50, "Character out of range"
+    assert y < 650, "Character out of range"
+    assert x > 50, "Character out of range"
+    assert x < 1090, "Character out of range"
+    assert screen < 21, "No such screen, check buttons for possible misnumbering."
+    assert screen >= 0, "No such screen, check buttons for possible misnumbering."
+    
+#test_cases()
